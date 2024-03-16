@@ -24,7 +24,7 @@ const handleButtonTap = () => {
 };
 
 const onSubmit = async () => {
-  const { data: responseData } = await useFetch('http://3.111.122.85:8080/api/v1/auth/token', {
+  const { data: responseData } = await useFetch('https://3.111.122.85:8080/api/v1/auth/token', {
     method: 'post',
     body: {
       email: email.value,

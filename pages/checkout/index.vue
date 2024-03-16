@@ -70,7 +70,7 @@ definePageMeta({
   //   middleware: ["authMiddleware"]
       middleware: 'auth'
 })
-const { data: events } = await useFetch('http://3.111.122.85:8080/api/v1/event/all')
+const { data: events } = await useFetch('https://3.111.122.85:8080/api/v1/event/all')
 const selectedEvent = ref();
 const selectedCategory = ref();
 
@@ -139,7 +139,7 @@ const purchaseTicket = async () => {
     const token = "Bearer " + userToken.value
     console.log(token)
     console.log(eventData)
-    const { data: responseData } = await useFetch('http://3.111.122.85:8080/api/v1/ticket/buy', {
+    const { data: responseData } = await useFetch('https://3.111.122.85:8080/api/v1/ticket/buy', {
         headers: {
             "Authorization": token
         },

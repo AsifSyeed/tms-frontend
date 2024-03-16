@@ -1,6 +1,6 @@
 <script setup>
     const { id } = useRoute().params;
-    const { data: events } = await useFetch('http://3.111.122.85:8080/api/v1/event/all');
+    const { data: events } = await useFetch('https://3.111.122.85:8080/api/v1/event/all');
     let selectedEvent = ref();
 
     if (id !== null) {

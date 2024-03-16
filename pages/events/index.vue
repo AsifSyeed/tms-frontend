@@ -38,7 +38,7 @@ function getTime(input) {
             "August", "September", "October", "November", "December"
         ][date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear() + ', ' + date.toLocaleTimeString("en-US", {hour: '2-digit', minute:'2-digit'});
     }
-const { data: events } = await useFetch('http://3.111.122.85:8080/api/v1/event/all');
+const { data: events } = await useFetch('https://3.111.122.85:8080/api/v1/event/all');
 
 console.log(events)
 
