@@ -28,7 +28,7 @@ const handleButtonTap = () => {
 };
 
 const onSubmit = async () => {
-  const { data: responseData } = await useFetch('https://api.countersbd.com:8080/api/v1/user/signup', {
+  const { data: responseData } = await useFetch('https://api.countersbd.com/api/v1/user/signup', {
     method: 'post',
     body: {
       email: email.value,
