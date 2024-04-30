@@ -5,10 +5,7 @@
             
             <Menubar :model="items" class="bg-gray-800 mx-2 mb-2 border-none">
                 <template #start>
-                   
                         <img src="~/assets/Logo_new.png" alt="" class="h-3rem px-3 py-1">
-                    
-                    
                 </template>
                 <template #item="{ item }" class="h-0">
                     <NuxtLink :to="`${item.action}`" class="mx-2 text-white">{{item.label}}</NuxtLink>
@@ -23,6 +20,18 @@
             </Menubar>
 
             <slot/>
+
+            <div class="text-white footer text-center text-xs">
+                <span>
+                    <a :onClick="termsConditions" style="cursor: pointer" class="mr-3"> Terms & Conditions</a>
+                    <a :onClick="refundpolicy" style="cursor: pointer"> Refund Policy</a>
+                </span>
+                <br/>
+                <br/>
+                <span>
+                    &copy; Counters 2024
+                </span>
+            </div>
         </div>
     </div>
 </template>
@@ -41,6 +50,10 @@ const items = ref([
         label: 'Events',
         action: '/events'
     },
+    {
+        label: 'About Us',
+        action: '/aboutus'
+    },
 ]);
 
 const signIn = () => {
@@ -49,6 +62,14 @@ const signIn = () => {
 
 const logOut = () => {
     navigateTo("/auth/logout")
+};
+
+const refundpolicy = () => {
+    navigateTo("/refundpolicy")
+};
+
+const termsConditions = () => {
+    navigateTo("/termsAndConditions")
 };
 
 </script>
@@ -92,5 +113,18 @@ const logOut = () => {
 a {
   text-decoration: none;
 }
+
+a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+/* .footer {
+  position: absolute;
+  bottom: 0;
+  width: 70%;
+  height: 70px;
+} */
+
 
 </style>

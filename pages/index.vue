@@ -1,5 +1,5 @@
 <template>
-  <div style="min-height:100vh;">
+  <div>
     <p>Home</p>
   </div>
 </template>

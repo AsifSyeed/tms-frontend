@@ -2,11 +2,12 @@
   <div class=" flex flex-column flex-wrap justify-content-center align-content-center align-items-center"
     style="height: 100%; min-height: 98vh">
     <img src="~/assets/Logo_new.png" alt="" class="max-w-18rem mb-5">
-    <div class="card flex flex-column p-7 bg-white border-round shadow-2 mb-7" style="height: 30%; width: 20%;">
+    <div class="card flex flex-column p-7 bg-white border-round shadow-2 mb-3" style="height: 30%; width: 20%;">
       <GlobalInputText type="text" v-model="email" placeholder="Email" class="w-full mb-2 border-round" />
       <GlobalInputText type="password" v-model="password" placeholder="Password" class="w-full mb-4 border-round" />
       <GlobalButton @buttonTapped="handleButtonTap" title="Sign In" :disabled="false"/>
       <div class="w-full text-center pt-4">Not signed up yet? <NuxtLink class="signupLink font-bold" to="/auth/signup">Sign Up</NuxtLink> </div>
+      <div class="w-full text-center pt-4"> <NuxtLink class="signupLink font-bold" to="/">Back to Home</NuxtLink> </div>
     </div>
   </div>
 </template>

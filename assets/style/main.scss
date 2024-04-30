@@ -6,13 +6,14 @@ body {
     // background-color: black;
     // background-image: url("https://vnvnation.com/cnt/gallery/LIVE/AG-7142.jpg");
     
-    min-height:100%;
+    min-height:100vh;
       background:linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(16, 16, 59, 0.45)), url(https://vnvnation.com/cnt/gallery/LIVE/AG-7142.jpg);
       background-size:cover;
       background-repeat: no-repeat;
     background-attachment: fixed;
     margin: 0;
     padding: 8px;
+    position: relative;
 }
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
@@ -24,3 +25,21 @@ body {
     outline: 1px solid $theme-yellow !important;
     outline-offset: -1px !important;
 }
+
+body {
+    position: relative;
+  }
+  
+  body::after {
+    content: '';
+    display: block;
+    height: 100px;
+    /* Set same as footer's height */
+  }
+  
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 75%;
+    height: 70px;
+  }

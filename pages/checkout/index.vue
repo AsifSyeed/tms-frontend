@@ -59,8 +59,13 @@
                 <div class="border-round text-4xl font-bold text-white">Total: ৳{{totalPrice}}</div>
             </div>
         </div>
+        <div class="flex justify-content-center flex-wrap mt-4">
+            <Checkbox v-model="agreedToTerms" :binary="true" inputId="checkbox" />
+
+            <label for="checkbox" class="ml-2 text-white text-sm"> By clicking you agree to our Terms of Use, Privacy Policy & Refund Policy</label>
+        </div>
         <div class="flex justify-content-center flex-wrap mb-6">
-                <GlobalButton title="Purchase Tickets" class="flex align-items-center justify-content-center mt-5 w-4 h-3rem" @buttonTapped="purchaseTicket" />
+                <GlobalButton :disabled="!agreedToTerms" title="Purchase Tickets" class="flex align-items-center justify-content-center mt-5 w-4 h-3rem" @buttonTapped="purchaseTicket" />
         </div>
     </div>
 </template>
@@ -73,7 +78,7 @@ definePageMeta({
 const { data: events } = await useFetch('https://api.countersbd.com/api/v1/event/all')
 const selectedEvent = ref();
 const selectedCategory = ref();
-
+const agreedToTerms = ref(false);
 const numberOfTickets = ref(1);
 const numberOfTicketsOpttions = ref([
     { name: "1", value: 1 },
@@ -137,16 +142,26 @@ const purchaseTicket = async () => {
     }
     const userToken = useCookie('userToken')
     const token = "Bearer " + userToken.value
-    console.log(token)
-    console.log(eventData)
-    const { data: responseData } = await useFetch('https://api.countersbd.com/api/v1/ticket/buy', {
-        headers: {
-            "Authorization": token
+    const { data, pending, error, refresh } = await useFetch('https://api.countersbd.com/api/v1/ticket/buy', {
+        onRequest({ request, options }) {
+            options.headers = {
+                "Authorization": token
+            }
+            options.method = 'post'
+            options.body = eventData
         },
-        method: 'post',
-        body: eventData
+        onRequestError({ request, options, error }) {
+            // Handle the request errors
+        },
+        onResponse({ request, response, options }) {
+            // Process the response data
+            console.log(response.value.data)
+        },
+        onResponseError({ request, response, options }) {
+            // Handle the response errors
+        }
     })
-    console.log(responseData)
+    
     //   if (responseData.value.responseCode === 200) {
     //     window.localStorage.setItem("token", responseData.value.data.token)
     //     const isAuthenticated = isAuthenticatedState()
@@ -155,3 +170,20 @@ const purchaseTicket = async () => {
     //   }
 };
 </script>
+
+<style lang="scss">
+
+.p-checkbox.p-highlight .p-checkbox-box {
+    border-color: #FBAF44 !important;
+    background: #FBAF44 !important;
+}
+
+.p-checkbox:not(.p-disabled):has(.p-checkbox-input:hover).p-highlight .p-checkbox-box {
+    border-color: #FBAF44 !important;
+    background: #FBAF44 !important;
+    color: #ffffff;
+}
+
+
+
+</style>

@@ -25,4 +25,5 @@ export default defineNuxtConfig({
   imports: {
     dirs: ['types/*.ts', 'types/**/*.ts'],
   },
+  components: true,
 })
