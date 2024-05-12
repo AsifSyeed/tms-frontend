@@ -12,7 +12,7 @@
                 </template>
                 <template #end>
                     <div class="flex align-items-left gap-2 pr-2">
-                        <div v-if="isAuthenticated" class="mr-2 text-white">Hello, Samin</div>
+                        <div v-if="isAuthenticated" class="mr-2 text-white">Hello, {{ userName }}</div>
                         <GlobalButton v-if="isAuthenticated" title="Log Out" class="" @buttonTapped="logOut" />
                         <GlobalButton v-else title="Sign In" class="" @buttonTapped="signIn" />
                     </div>
@@ -20,8 +20,9 @@
             </Menubar>
 
             <slot/>
-
+            
             <div class="text-white footer text-center text-xs">
+                <img src="https://securepay.sslcommerz.com/public/image/SSLCommerz-Pay-With-logo-All-Size-03.png" alt="" class="max-w-full pb-4 pt-4">
                 <span>
                     <a :onClick="termsConditions" style="cursor: pointer" class="mr-3"> Terms & Conditions</a>
                     <a :onClick="refundpolicy" style="cursor: pointer"> Refund Policy</a>
@@ -40,6 +41,7 @@
 import { ref } from "vue";
 import { isAuthenticatedState } from '~/composables/state';
 const isAuthenticated = isAuthenticatedState()
+const userName = ref()
 
 const items = ref([
     {
@@ -71,10 +73,28 @@ const refundpolicy = () => {
 const termsConditions = () => {
     navigateTo("/termsAndConditions")
 };
+const userToken = useCookie('userToken')
+    const token = "Bearer " + userToken.value
+
+    const { data: responseData } = await useFetch('https://api.countersbd.com/api/v1/user/me', {
+    method: 'get',
+    headers: {
+        "Authorization": token
+    }
+  })
+  console.log()
+  
+  if (responseData._value !== null) {
+    isAuthenticated.value = true
+    userName.value = responseData._value.data.userName
+  } else {
+    isAuthenticated.value = false
+  }
 
 </script>
 
 <style>
+
 .p-menuitem {
     margin: 0 8px !important;
     padding: 0 0px; 

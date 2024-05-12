@@ -33,13 +33,37 @@ body {
   body::after {
     content: '';
     display: block;
-    height: 100px;
+    height: 170px;
     /* Set same as footer's height */
   }
-  
+  @media screen and (min-width: 991px) {
   .footer {
     position: absolute;
     bottom: 0;
-    width: 75%;
-    height: 70px;
+    width: 73.2%;
+    height: 170px;
   }
+}
+
+@media screen and (max-width: 991px) {
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 98%;
+    height: 170px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: auto;
+  }
+}
+
+.p-checkbox.p-highlight .p-checkbox-box {
+  border-color: #FBAF44 !important;
+  background: #FBAF44 !important;
+}
+
+.p-checkbox:not(.p-disabled):has(.p-checkbox-input:hover).p-highlight .p-checkbox-box {
+  border-color: #FBAF44 !important;
+  background: #FBAF44 !important;
+  color: #ffffff;
+}

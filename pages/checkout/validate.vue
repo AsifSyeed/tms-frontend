@@ -42,28 +42,7 @@ const payload = {
     console.log(token)
     console.log(tran_id)
     console.log(payload)
-    await $fetch('https://api.countersbd.com/api/v1/user/me', {
-        onRequest({ request, options }) {
-            options.headers = {
-                "Authorization": token
-            }
-            options.method = 'get'
-            
-        },
-        onRequestError({ request, options, error }) {
-            // Handle the request errors
-            console.log(error)
-        },
-        onResponse({ request, response, options }) {
-            // Process the response data
-            
-            console.log(response._data)
-        },
-        onResponseError({ request, response, options }) {
-            // Handle the response errors
-            console.log(response)
-        }
-    })
+    
         const { data, pending, error, refresh } = await $fetch('https://api.countersbd.com/api/v1/transaction/check-status', {
         onRequest({ request, options }) {
             options.headers = {
@@ -89,31 +68,6 @@ const payload = {
                 res.value = response._data.data
             }
             // console.log(response._data.data)
-        },
-        onResponseError({ request, response, options }) {
-            // Handle the response errors
-            console.log(response)
-        }
-    })
-
-    const emailAPI = 'https://api.countersbd.com/api/v1/email/ticket-confirmation/' + tran_id
-
-    const { emailData, emailPending, emailError, emailRefresh } = await $fetch(emailAPI, {
-        onRequest({ request, options }) {
-            options.headers = {
-                "Authorization": token
-            }
-            options.method = 'get'
-            
-        },
-        onRequestError({ request, options, error }) {
-            // Handle the request errors
-            console.log(error)
-        },
-        onResponse({ request, response, options }) {
-            // Process the response data
-            // isLoading.value = false
-            console.log(response)
         },
         onResponseError({ request, response, options }) {
             // Handle the response errors

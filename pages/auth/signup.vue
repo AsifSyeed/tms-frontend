@@ -2,7 +2,7 @@
   <div class=" flex flex-column flex-wrap justify-content-center align-content-center align-items-center"
     style="height: 100%; min-height: 98vh">
     <img src="~/assets/Logo_new.png" alt="" class="max-w-18rem mb-5">
-    <div class="card flex flex-column p-7 bg-white border-round shadow-2" style="height: 30%; width: 20%;">
+    <div class="card flex flex-column p-7 bg-white border-round shadow-2 lg-w-30 sm-w-90" style="height: 30%;">
       <GlobalInputText type="text" v-model="userName" placeholder="User Name" class="w-full mb-2 border-round" />
       <GlobalInputText type="text" v-model="phoneNumber" placeholder="Phone Number" class="w-full mb-2 border-round" />
       <GlobalInputText type="text" v-model="email" placeholder="Email" class="w-full mb-2 border-round" />
