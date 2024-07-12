@@ -24,7 +24,7 @@
 </script>
 
 <template>
-  <div class="text-white">
+  <div class="text-white mb-8 pb-6">
     <div class="px-2 mt-6">
         <div class="w-12 h-22rem border-round-xl overflow-hidden container">
             
@@ -85,16 +85,12 @@
                         </div>
                     </template>
                     <template #footer>
-                        <div class="p-2 border-round-xl text-center font-bold text-3xl" style="background-color: #FBAF44; color:black">
+                        <div @click="navigateTo('/checkout/'+selectedEvent.eventId+'/'+category.categoryId)" class="p-2 border-round-xl text-center font-bold text-3xl" style="background-color: #FBAF44; color:black">
                             ৳{{ category.categoryPrice }}
                         </div>
                     </template>
                 </Card>
             </div>
-        </div>
-
-        <div class="text-center mb-8 mx-2">
-            <GlobalButton title="Purchase Ticket" @button-tapped="navigateTo('/checkout/'+selectedEvent.eventId)" class="my-6 py-3 w-12 lg:w-4 font-bold" style="color: black; font-weight: 800;"/>
         </div>
   </div>
 </template>

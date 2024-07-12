@@ -1,7 +1,7 @@
 
 <template>
     <div>
-        <div class="card max-w-screen lg:w-9 sm:w-full pt-2 mx-auto">
+        <div class="card max-w-screen lg:w-9 sm:w-full pt-2 mx-auto pb-7">
             
             <Menubar :model="items" class="bg-gray-800 mx-2 mb-2 border-none">
                 <template #start>
@@ -44,10 +44,6 @@ const isAuthenticated = isAuthenticatedState()
 const userName = ref()
 
 const items = ref([
-    {
-        label: 'Home',
-        action: '/'
-    },
     {
         label: 'Events',
         action: '/events'
@@ -93,50 +89,37 @@ const userToken = useCookie('userToken')
 
 </script>
 
-<style>
+<style scoped>
 
-.p-menuitem {
-    margin: 0 8px !important;
-    padding: 0 0px; 
+body {
+    position: relative;
+  }
+  
+  body::after {
+    content: '';
+    display: block;
+    height: 170px;
+    /* Set same as footer's height */
+  }
+  @media screen and (min-width: 991px) {
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 73.2%;
+    height: 170px;
+  }
 }
 
-.p-menuitem-content{
-    padding: 8px 0px !important;
-    text-decoration-color: white !important;
-}
-.p-focus{
-    background-color: rgba(0, 0, 0, 0);
-    background: rgba(0, 0, 0, 0);
-}
-
-.p-menuitem-content:hover{
-    background-color: #FBAF44;
-}
-
-.p-menuitem .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {
-    background-color: rgba(0, 0, 0, 0);
-    background: rgba(0, 0, 0, 0);
-}
-
-.p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {
-    background-color: rgba(0, 0, 0, 0);
-    background: rgba(0, 0, 0, 0);
-}
-
-.router-link-active {
-    margin: 0;
-    padding: 8px 8px;
-    border-radius: 5px;
-    background-color: #FBAF44;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-  color: white;
+@media screen and (max-width: 991px) {
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 98%;
+    height: 170px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: auto;
+  }
 }
 
 /* .footer {

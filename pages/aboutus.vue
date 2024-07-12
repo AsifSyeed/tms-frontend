@@ -40,11 +40,12 @@
         trends to offer you the best in ticketing technology. Our goal is to grow alongside
         our clients and communities, contributing to the flourishing event scene in
         Bangladesh.
-
+        <br/><br/>
         Join us at Counters as we transform the ticketing experience in Bangladesh.
         Whether you are an event organizer or an attendee, our platform is designed to
         cater to your every need, ensuring that every event is a memorable experience 
         </p>
+        <div style="height: 120px;"></div>
     </div>
   </template>
   

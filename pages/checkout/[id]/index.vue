@@ -7,7 +7,7 @@
             
             <div class="field col-12 md:col-5">
                 <label class="text-white">Event</label>
-                <Dropdown v-model="selectedEvent" :options="events.data" optionLabel="eventName" placeholder="Select Event" class="w-full bg-white" @change="changedEvent"/>
+                <Dropdown disabled="true" v-model="selectedEvent" :options="events.data" optionLabel="eventName" placeholder="Select Event" class="w-full bg-white" @change="changedEvent"/>
             </div>
             <div class="field col-12 md:col-5">
                 <label class="text-white">Ticket Category</label>
@@ -118,7 +118,6 @@ const agreedToTerms = ref(false);
 if (id !== null) {
     console.log(id)
     selectedEvent.value = events.value.data.filter((e) => e.eventId === id)[0]
-    console.log(selectedEvent)
 }
 
 const numberOfTickets = ref(1);

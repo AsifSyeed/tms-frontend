@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-
+navigateTo('/events')
 </script>
 
 <style>

@@ -56,22 +56,9 @@ uncertainties that may affect their ability to attend the event.
 
 By purchasing a ticket through Counters, you acknowledge and agree to this
 no-refund policy. We appreciate your understanding and are committed to
-providing you with reliable ticketing services
-By purchasing a ticket through Counters, you acknowledge and agree to this
-no-refund policy. We appreciate your understanding and are committed to
-providing you with reliable ticketing servicesBy purchasing a ticket through Counters, you acknowledge and agree to this
-no-refund policy. We appreciate your understanding and are committed to
-providing you with reliable ticketing servicesBy purchasing a ticket through Counters, you acknowledge and agree to this
-no-refund policy. We appreciate your understanding and are committed to
-providing you with reliable ticketing servicesBy purchasing a ticket through Counters, you acknowledge and agree to this
-no-refund policy. We appreciate your understanding and are committed to
-providing you with reliable ticketing servicesBy purchasing a ticket through Counters, you acknowledge and agree to this
-no-refund policy. We appreciate your understanding and are committed to
-providing you with reliable ticketing services
-
-      
-
+providing you with reliable ticketing services.
         </p>
+        <div style="height: 120px;"></div>
     </div>
   </template>
   
