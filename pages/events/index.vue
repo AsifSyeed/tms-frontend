@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="mx-auto w-full px-4 sm:px-2 lg:px-4">
+    <div class="mx-auto w-full px-4 sm:px-2 lg:px-4 mb-8">
       <div class="mx-auto max-w-2xl lg:max-w-none py-2">
         <h2 class="text-2xl font-bold text-white">Events</h2>
         <div class="grid">
             <div v-for="event in events.data" :key="event.eventId" class="lg:col-4 sm:col-12 p-4">
               <Card style="overflow: hidden" class="bg-gray-800">
                   <template #header>
-                      <img alt="user header" src="https://images.unsplash.com/photo-1604514288114-3851479df2f2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="h-15rem w-full overflow-hidden" />
+                      <img alt="user header" src="https://countersbd-ticket-bucket.s3.ap-south-1.amazonaws.com/event_C216860256.jpg" class="h-15rem w-full overflow-hidden" />
                   </template>
                   <template #title><div class="text-white">{{ event.eventName }}</div></template>
                   <template #subtitle><div class="text-white">{{ getTime(event.eventStartDate) }}</div></template>

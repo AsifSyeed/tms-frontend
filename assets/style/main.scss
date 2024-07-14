@@ -55,6 +55,31 @@ body {
   background-color: #FBAF44;
 }
 
+.p-menubar.p-menubar-mobile .p-menubar-button:focus {
+  outline: 0px solid var(--p-focus-ring-color);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.p-menubar-root-list {
+  background-color: #1E293B;
+  background: #1E293B;
+  border-color: rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+@media screen and (min-width: 480px) {
+  .p-menubar-root-list {
+    background-color: #1E293B;
+    background: #1E293B;
+    border-color: rgba(0, 0, 0, 0);
+    border-radius: 8px;
+    padding: 0px;
+  }
+}
+
 .p-menuitem .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {
   background-color: rgba(0, 0, 0, 0);
   background: rgba(0, 0, 0, 0);

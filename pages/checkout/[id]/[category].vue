@@ -67,6 +67,7 @@
         <div class="flex justify-content-center flex-wrap mb-6">
                 <GlobalButton :disabled="!agreedToTerms" title="Purchase Tickets" class="flex align-items-center justify-content-center mt-3 w-4 h-3rem" @buttonTapped="purchaseTicket" />
         </div>
+        <div style="height: 120px;"></div>
     </div>
 </template>
   
@@ -114,13 +115,6 @@ const { userData, userPending, userError, userRefresh } = await $fetch('https://
 let selectedEvent = ref();
 const selectedCategory = ref();
 const agreedToTerms = ref(false);
-
-if (id !== null && category !== null) {
-    console.log(id)
-    console.log(category)
-    selectedEvent.value = events.value.data.filter((e) => e.eventId === id)[0]
-    selectedCategory.value = selectedEvent.value.categoryList.filter((e) => e.categoryId === parseInt(category, 10))[0]
-}
 
 const numberOfTickets = ref(1);
 const numberOfTicketsOpttions = ref([
@@ -177,6 +171,14 @@ const updateTotalPrice = () => {
         totalPrice = 0
     }
 };
+
+if (id !== null && category !== null) {
+    console.log(id)
+    console.log(category)
+    selectedEvent.value = events.value.data.filter((e) => e.eventId === id)[0]
+    selectedCategory.value = selectedEvent.value.categoryList.filter((e) => e.categoryId === parseInt(category, 10))[0]
+    updateTotalPrice()
+}
 
 const changedEvent = () => {
     selectedCategory.value = null
