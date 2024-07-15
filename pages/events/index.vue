@@ -4,7 +4,7 @@
       <div class="mx-auto max-w-2xl lg:max-w-none py-2">
         <h2 class="text-2xl font-bold text-white">Events</h2>
         <div class="grid">
-            <div v-for="event in events.data" :key="event.eventId" class="lg:col-4 sm:col-12 p-4">
+            <div v-for="event in events.data" :key="event.eventId" class="lg:col-4 sm:col-12 px-2 md:px-4 py-4">
               <Card style="overflow: hidden" class="bg-gray-800">
                   <template #header>
                       <img alt="user header" src="https://countersbd-ticket-bucket.s3.ap-south-1.amazonaws.com/event_C216860256.jpg" class="h-15rem w-full overflow-hidden" />
@@ -31,6 +31,7 @@
 </template>
 
 <script setup>
+
 function getTime(input) {
         var date = new Date(input.replace(/ /g,'T'));
         return [

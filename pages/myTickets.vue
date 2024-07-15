@@ -4,8 +4,7 @@
         <div class="mx-auto w-full px-4 sm:px-2 lg:px-4">
             <div class="mx-auto max-w-2xl lg:max-w-none py-2">
                 <h2 class="text-2xl font-bold text-white">My Tickets</h2>
-
-
+                
                 <h3 class="text-xl font-bold text-white">Upcoming Events</h3>
                 <div v-for="event in upcomingEvents" :key="event.ticketId"
                     class="formgrid grid bg-gray-800 border-round h-25rem md:h-10rem overflow-hidden mb-4">
@@ -85,6 +84,12 @@
 </template>
 
 <script lang="ts" setup>
+
+definePageMeta({
+  //   middleware: ["authMiddleware"]
+      middleware: 'auth'
+})
+
 let pastEvents = ref([])
 let upcomingEvents = ref([])
 const userToken = useCookie('userToken')

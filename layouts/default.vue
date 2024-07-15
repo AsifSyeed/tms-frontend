@@ -3,19 +3,22 @@
         <div class="card max-w-screen lg:w-9 sm:w-full pt-2 mx-auto pb-7">
             <Menubar :model="items" class="bg-gray-800 mx-2 mb-2 border-none">
                 <template #start>
-                    <img src="~/assets/Logo_new.png" alt="" class="h-3rem px-3 py-1">
+                    <div class="flex align-content-center flex-wrap ">
+                        <img src="~/assets/Logo_new.png" alt="" class="h-3rem px-1 md:px-3 py-1 flex align-items-center justify-content-center">
+                    </div>
+                    
                 </template>
-                <template #item="{ item }" class="h-0">
-                    <NuxtLink :to="`${item.action}`" class="mx-2 text-white">{{ item.label }}</NuxtLink>
+                <template #item="{ item, props, hasSubmenu, root }">
+                        <a v-if="(item.label === 'User' && isAuthenticated) || item.label !== 'User'" v-ripple class="flex items-center" v-bind="props.action">
+                            <span v-if="item.label === 'User'">{{ userName }}</span>
+                            <span v-else>{{ item.label }}</span>
+                            <i v-if="hasSubmenu" :class="['pi pi-angle-down', { 'pi-angle-down ml-2': root, 'pi-angle-right ml-auto': !root }]"></i>
+                        </a>
                 </template>
                 <template #end>
-                    <div class="flex align-items-left gap-2 pr-2">
-                        <!-- <div v-if="isAuthenticated" class="mr-2 text-white"> {{ userName }}</div> -->
-                        
-                        <img v-if="isAuthenticated" src="~/assets/user.png" alt="" class="h-2rem pr-2">
-                        <!-- <GlobalButton  title="Log Out" class="" @buttonTapped="logOut" /> -->
-                        <GlobalButton v-else title="Sign In" class="" @buttonTapped="signIn" />
-
+                    <div class="flex align-items-left gap-2 pr-1 md:pr-2">
+                        <GlobalButton v-if="isAuthenticated" title="Log Out" class="" @buttonTapped="logOut" />
+                        <GlobalButton v-else title="Log In" class="" @buttonTapped="signIn" />
                     </div>
                 </template>
             </Menubar>
@@ -48,11 +51,32 @@ const userName = ref()
 const items = ref([
     {
         label: 'Events',
-        action: '/events'
+        command: () => {
+            navigateTo("/events")
+        }
     },
     {
         label: 'About Us',
-        action: '/aboutus'
+        command: () => {
+            navigateTo("/aboutus")
+        }
+    }, 
+    {
+        label: 'User',
+        items: [
+            {
+                label: 'My Tickets',
+                command: () => {
+                    navigateTo("/myTickets")
+                }
+            },
+            {
+                label: 'Change Password',
+                command: () => {
+                    navigateTo("auth/changePassword")
+                }
+            }
+        ]
     },
 ]);
 

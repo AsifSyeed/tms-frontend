@@ -4,10 +4,10 @@
       <Toast/>
       <img src="~/assets/Logo_new.png" alt="" class="max-w-18rem mb-5">
       <div class="card flex flex-column p-7 bg-white border-round shadow-2 lg-w-30 sm-w-90" style="height: 30%;">
-        <div class="text-center mb-3 font-bold text-xl">Forgot Password</div>
+        <div class="text-center mb-3 font-bold text-xl">Change Password</div>
         <GlobalInputText type="text" v-model="email" placeholder="Email" class="w-full mb-2 border-round" />
         <GlobalButton @buttonTapped="handleButtonTap" title="Submit" :disabled="false"/>
-        <div class="w-full text-center pt-4"> <NuxtLink class="signupLink font-bold" to="/auth/signin">Go Back</NuxtLink> </div>
+        <div class="w-full text-center pt-4"> <NuxtLink class="signupLink font-bold" to="/">Go Back</NuxtLink> </div>
       </div>
     </div>
 </template>
@@ -28,7 +28,7 @@
     if (email.value === null || email.value === "") {
       toast.add({ severity: 'error', summary: 'Error', detail: "Please fill up all the fields", life: 3000 });
     } else {
-      useFetch('https://api.countersbd.com/api/v1/user/generic-otp?emailId='+ email.value +'&featureCode=3', {
+      useFetch('https://api.countersbd.com/api/v1/user/generic-otp?emailId='+ email.value +'&featureCode=4', {
         method: "POST",
         body: {}
       }).then(res => {
@@ -44,7 +44,7 @@
             session.value = data.data.sessionId
             navigateTo({
               path: '/auth/verify',
-              query: { email: email.value, code: 3 }
+              query: { email: email.value, code: 4 }
             })
           } else {
             toast.add({ severity: 'error', summary: 'Opps!', detail: data.message, life: 3000 });

@@ -37,22 +37,74 @@ body {
   color: #ffffff;
 }
 
-.p-menuitem {
-  margin: 0 8px !important;
-  padding: 0 0px; 
+//MENU BAR CSS
+.p-menubar .p-menuitem {
+  margin: 0 2px;
+}
+.p-menubar .p-menuitem > .p-menuitem-content .p-menuitem-link {
+  color: white;
+}
+.p-menubar .p-menuitem.p-highlight > .p-menuitem-content {
+  background: #FBAF44;
+}
+.p-menubar {
+  background: #FBAF44;
+}
+.p-menuitem .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {
+  background: #FBAF44;
+}
+.p-menuitem .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {
+  background: #FBAF44;
 }
 
-.p-menuitem-content{
-  padding: 8px 0px !important;
-  text-decoration-color: white !important;
+.p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {
+  background: #FBAF44;
 }
+
 .p-focus{
-  background-color: rgba(0, 0, 0, 0);
-  background: rgba(0, 0, 0, 0);
+  background: #FBAF44;
+  border-radius: 6px;
 }
 
 .p-menuitem-content:hover{
-  background-color: #FBAF44;
+  background: #FBAF44;
+  border-radius: 6px;
+}
+
+.router-link-active {
+  background: #FBAF44;
+}
+
+.p-submenu-list {
+  background: rgba(0, 0, 0, 0);
+  border: 0;
+  border-radius: 0;
+}
+
+.p-menubar-root-list {
+  background-color: #1E293B;
+  background: #1E293B;
+  border-color: rgba(0, 0, 0, 0);
+  border-radius: 6px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 8px;
+}
+
+@media screen and (min-width: 480px) {
+  .p-submenu-list {
+    background: #1E293B;
+    border: 0;
+    border-radius: 6px;
+  }
+
+  .p-menubar-root-list {
+    background-color: #1E293B;
+    background: #1E293B;
+    border-color: rgba(0, 0, 0, 0);
+    border-radius: 6px;
+    padding: 0px;
+  }
 }
 
 .p-menubar.p-menubar-mobile .p-menubar-button:focus {
@@ -61,41 +113,65 @@ body {
   box-shadow: none;
 }
 
-.p-menubar-root-list {
-  background-color: #1E293B;
-  background: #1E293B;
-  border-color: rgba(0, 0, 0, 0);
-  border-radius: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
+// .p-menuitem {
+//   margin: 0 8px !important;
+//   padding: 0 0px; 
+// }
 
-@media screen and (min-width: 480px) {
-  .p-menubar-root-list {
-    background-color: #1E293B;
-    background: #1E293B;
-    border-color: rgba(0, 0, 0, 0);
-    border-radius: 8px;
-    padding: 0px;
-  }
-}
+// .p-menuitem-content{
+//   padding: 8px 0px !important;
+//   text-decoration-color: white !important;
+// }
+// .p-focus{
+//   background-color: rgba(0, 0, 0, 0);
+//   background: rgba(0, 0, 0, 0);
+// }
 
-.p-menuitem .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {
-  background-color: rgba(0, 0, 0, 0);
-  background: rgba(0, 0, 0, 0);
-}
+// .p-menuitem-content:hover{
+//   background-color: #FBAF44;
+// }
 
-.p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {
-  background-color: rgba(0, 0, 0, 0);
-  background: rgba(0, 0, 0, 0);
-}
+// .p-menubar.p-menubar-mobile .p-menubar-button:focus {
+//   outline: 0px solid var(--p-focus-ring-color);
+//   outline-offset: 2px;
+//   box-shadow: none;
+// }
 
-.router-link-active {
-  margin: 0;
-  padding: 8px 8px;
-  border-radius: 5px;
-  background-color: #FBAF44;
-}
+// .p-menubar-root-list {
+//   background-color: #1E293B;
+//   background: #1E293B;
+//   border-color: rgba(0, 0, 0, 0);
+//   border-radius: 8px;
+//   padding-top: 8px;
+//   padding-bottom: 8px;
+// }
+
+// @media screen and (min-width: 480px) {
+//   .p-menubar-root-list {
+//     background-color: #1E293B;
+//     background: #1E293B;
+//     border-color: rgba(0, 0, 0, 0);
+//     border-radius: 8px;
+//     padding: 0px;
+//   }
+// }
+
+// .p-menuitem .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {
+//   background-color: rgba(0, 0, 0, 0);
+//   background: rgba(0, 0, 0, 0);
+// }
+
+// .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {
+//   background-color: rgba(0, 0, 0, 0);
+//   background: rgba(0, 0, 0, 0);
+// }
+
+// .router-link-active {
+//   margin: 0;
+//   padding: 8px 8px;
+//   border-radius: 5px;
+//   background-color: #FBAF44;
+// }
 
 a {
 text-decoration: none;

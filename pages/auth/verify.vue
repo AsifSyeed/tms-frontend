@@ -19,11 +19,6 @@
   </template>
   
   <script lang="ts" setup>
-  import { isAuthenticatedState } from '~/composables/state';
-  
-  definePageMeta({
-    layout: 'auth'
-  })
   const oldPassword = ref(null);
   const newPassword = ref(null);
   const retypePassword = ref(null);
@@ -106,16 +101,45 @@
 
   const onSubmit = async () => {
     if (canProceed()) {
-        useFetch('https://api.countersbd.com/api/v1/user/verify', {
-            method: "POST",
-            body: {
+        let body = {}
+        let url = ''
+        if (code === '1') {
+            url = 'api/v1/user/verify'
+            body = {
                 email: email,
                 tfaData: {
                     featureCode: code,
-                    otp: otp,
+                    otp: otp.value,
                     sessionId: session.value
                 }
             }
+        } else if (code === '3') {
+            url = 'api/v1/user/forget-password/verify'
+            body = {
+                email: email,
+                userRole: 1,
+                newPassword: newPassword.value,
+                tfaData: {
+                    featureCode: code,
+                    otp: otp.value,
+                    sessionId: session.value
+                }
+            }
+        } else if (code === '4') {
+            url = 'api/v1/user/change-password'
+            body = {
+                oldPassword: oldPassword.value,
+                newPassword: newPassword.value,
+                tfaData: {
+                    featureCode: code,
+                    otp: otp.value,
+                    sessionId: session.value
+                }
+            }
+        }
+        useFetch('https://api.countersbd.com/'+url, {
+            method: "POST",
+            body: body
         }).then(res => {
         const data = res.data.value
         const error = res.error.value

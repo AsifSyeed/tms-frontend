@@ -10,6 +10,23 @@ export default defineNuxtRouteMiddleware((to, from) => {
             isAuthenticated.value = false
             return navigateTo(from)
         }
+
+        if (to.path === '/myTickets') {
+            const token = useCookie('userToken').value
+            console.log(token)
+            if (!token) {
+                return navigateTo('/auth/signin')
+            }
+        }
+
+        if (to.path === '/auth/changePassword') {
+            const token = useCookie('userToken').value
+            console.log(token)
+            if (!token) {
+                return navigateTo('/auth/signin')
+            }
+        }
+
         if (to.path.includes('/checkout')) {
             const token = useCookie('userToken').value
             console.log(token)
