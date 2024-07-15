@@ -7,7 +7,10 @@
             <div v-for="event in events.data" :key="event.eventId" class="lg:col-4 sm:col-12 px-2 md:px-4 py-4">
               <Card style="overflow: hidden" class="bg-gray-800">
                   <template #header>
-                      <img alt="user header" src="https://countersbd-ticket-bucket.s3.ap-south-1.amazonaws.com/event_C216860256.jpg" class="h-15rem w-full overflow-hidden" />
+                    <div class="h-15rem overflow-hidden">
+                      <img alt="user header" src="https://countersbd-ticket-bucket.s3.ap-south-1.amazonaws.com/event_C216860256.jpg" class="w-full" />
+                    </div>
+                      
                   </template>
                   <template #title><div class="text-white">{{ event.eventName }}</div></template>
                   <template #subtitle><div class="text-white">{{ getTime(event.eventStartDate) }}</div></template>
