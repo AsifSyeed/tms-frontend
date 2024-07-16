@@ -4,8 +4,8 @@
         <div class="mx-auto w-full px-4 sm:px-2 lg:px-4">
             <div class="mx-auto max-w-2xl lg:max-w-none py-2">
                 <h2 class="text-2xl font-bold text-white">My Tickets</h2>
-                
-                <h3 class="text-xl font-bold text-white">Upcoming Events</h3>
+
+                <h3 v-if="upcomingEvents.length > 0" class="text-xl font-bold text-white">Upcoming Events</h3>
                 <div v-for="event in upcomingEvents" :key="event.ticketId"
                     class="formgrid grid bg-gray-800 border-round h-25rem md:h-10rem overflow-hidden mb-4">
                     <div class="field col-12 md:col-3 m-0 p-0 h-12rem md:h-10rem">
@@ -41,7 +41,7 @@
                 </div>
 
 
-                <h3 class="text-xl font-bold text-white mt-6">Past Events</h3>
+                <h3 v-if="pastEvents.length > 0 " class="text-xl font-bold text-white mt-6">Past Events</h3>
                 <div v-for="event in pastEvents" :key="event.ticketId"
                     class="formgrid grid bg-gray-800 border-round h-25rem md:h-10rem overflow-hidden mb-4">
                     <div class="field col-12 md:col-3 m-0 p-0 h-12rem md:h-10rem">
@@ -86,7 +86,6 @@
 <script lang="ts" setup>
 
 definePageMeta({
-  //   middleware: ["authMiddleware"]
       middleware: 'auth'
 })
 
@@ -97,7 +96,7 @@ const token = "Bearer " + userToken.value
 const toast = useToast()
 
 
-function getDate(input) {
+function getDate(input:any) {
     var date = new Date(input.replace(/ /g, 'T'));
     return date.getDate() + ' ' + [
         "January", "February", "March", "April", "May", "June", "July",
@@ -105,19 +104,19 @@ function getDate(input) {
     ][date.getMonth()] + ', ' + date.getFullYear();
 }
 
-function getTime(input) {
+function getTime(input:any) {
     var date = new Date(input.replace(/ /g, 'T'));
     return date.toLocaleTimeString("en-US", { hour: '2-digit', minute: '2-digit' });
 }
 
-function sendEmail(input) {
+function sendEmail(input:any) {
     useFetch('https://api.countersbd.com/api/v1/ticket/send-email?ticketId='+input, {
         headers: {
             "Authorization": token
         },
         method: "GET"
     }).then(res => {
-        const data = res.data.value
+        const data:any = res.data.value
         const error = res.error.value
         if (error) {
             // dealing error
@@ -146,7 +145,7 @@ useFetch('https://api.countersbd.com/api/v1/ticket/my-tickets', {
     },
     method: "GET"
 }).then(res => {
-    const data = res.data.value
+    const data:any = res.data.value
     const error = res.error.value
     if (error) {
         // dealing error
@@ -154,8 +153,8 @@ useFetch('https://api.countersbd.com/api/v1/ticket/my-tickets', {
     } else {
         console.log(data)
         if (data.responseCode !== null && data.responseCode === 200) {
-            pastEvents.value = data.data.filter((e) => e.ticketStatus === true)
-            upcomingEvents.value = data.data.filter((e) => e.ticketStatus === false)
+            pastEvents.value = data.data.filter((e:any) => e.ticketStatus === true)
+            upcomingEvents.value = data.data.filter((e:any) => e.ticketStatus === false)
 
             console.log(pastEvents.value)
             console.log(upcomingEvents.value)
