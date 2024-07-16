@@ -85,7 +85,7 @@
                         </div>
                     </template>
                     <template #footer>
-                        <div @click="navigateTo('/checkout/'+selectedEvent.eventId+'/'+category.categoryId)" class="p-2 border-round-xl text-center font-bold text-3xl" style="background-color: #FBAF44; color:black">
+                        <div @click="navigateTo('/checkout/'+selectedEvent.eventId+'/'+category.categoryId)" class="cursor-pointer p-2 border-round-xl text-center font-bold text-3xl" style="background-color: #FBAF44; color:black;">
                             ৳{{ category.categoryPrice }}
                         </div>
                     </template>

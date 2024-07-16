@@ -127,7 +127,7 @@ function bounceUser() {
 }
 
 const canProceed = (): boolean => {
-    if (!agreedToTerms) {
+    if (!agreedToTerms.value) {
         console.log("agreement")
         return false
     } 
