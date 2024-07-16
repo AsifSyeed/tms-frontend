@@ -7,7 +7,7 @@
 
             <div class="field col-12 md:col-5">
                 <label class="text-white">Event</label>
-                <Dropdown dropdownIcon="asd" disabled="true" v-model="selectedEvent" :options="events.data"
+                <Dropdown dropdownIcon="asd" :disabled="true" v-model="selectedEvent" :options="events.data"
                     optionLabel="eventName" placeholder="Select Event" class="w-full bg-white" @change="changedEvent" />
             </div>
             <div class="field col-12 md:col-5">
