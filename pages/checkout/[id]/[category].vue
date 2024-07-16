@@ -1,5 +1,6 @@
 <template>
     <div class="w-full p-1">
+        <Toast />
         <div class="flex justify-content-center flex-wrap">
             <h2 class="text-4xl font-bold text-white">Checkout</h2>
         </div>
