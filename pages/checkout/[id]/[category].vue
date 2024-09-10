@@ -46,7 +46,8 @@
             </div>
             <template v-for="(attendee, index) in attendeeList">
                 <div class="field col-12 md:col-5">
-                    <GlobalInputText :placeholder="'Name of attendee: ' + (index + 1)" v-model="attendee.ticketOwnerName" />
+                    <GlobalInputText :placeholder="'Name of attendee: ' + (index + 1)"
+                        v-model="attendee.ticketOwnerName" />
                 </div>
                 <div class="field col-12 md:col-4">
                     <GlobalInputText placeholder="Email" v-model="attendee.ticketOwnerEmail" />
@@ -65,11 +66,15 @@
             </div>
         </div>
         <div class="flex justify-content-center flex-wrap mt-4">
-            <Checkbox v-model="agreedToTerms" :binary="true" inputId="checkbox" />
-
-            <label for="checkbox" class="ml-2 text-white text-sm"> By clicking you agree to our Terms of Use, Privacy
-                Policy &
-                Refund Policy</label>
+            <div class="flex align-items-center">
+                <Checkbox v-model="agreedToTerms" :binary="true" inputId="checkbox" />
+                <label for="checkbox" class="ml-2 text-white text-sm">
+                    By clicking you agree to our
+                    <span class="text-blue-300 cursor-pointer" @click="termsConditions">Terms & Privacy
+                        Policy</span>,
+                    <span class="text-blue-300 cursor-pointer" @click="refundpolicy">Refund Policy</span>
+                </label>
+            </div>
         </div>
         <div class="flex justify-content-center flex-wrap mb-6">
             <GlobalButton :disabled="!canProceed()" title="Purchase Tickets"
@@ -81,6 +86,13 @@
 
 <script lang="ts" setup>
 const { id, category } = useRoute().params;
+const refundpolicy = () => {
+    navigateTo("/refundpolicy")
+};
+
+const termsConditions = () => {
+    navigateTo("/termsAndConditions")
+};
 definePageMeta({
     middleware: 'auth'
 })
@@ -130,7 +142,7 @@ const canProceed = (): boolean => {
     if (!agreedToTerms.value) {
         console.log("agreement")
         return false
-    } 
+    }
     let state = true
     for (let i = 0; i < attendeeList.value.length; i++) {
         if (attendeeList.value[i].ticketOwnerEmail === null || attendeeList.value[i].ticketOwnerEmail === "") {
@@ -146,7 +158,7 @@ const canProceed = (): boolean => {
             state = false
         }
     }
-    console.log("state "+state)
+    console.log("state " + state)
     return state
 };
 
@@ -255,5 +267,11 @@ const purchaseTicket = async () => {
     border-color: #FBAF44 !important;
     background: #FBAF44 !important;
     color: #ffffff;
+}
+
+/* Prevent the label from being clickable */
+.non-clickable-label {
+    pointer-events: none;
+    /* Disable pointer events on the label */
 }
 </style>

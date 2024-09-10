@@ -4,19 +4,22 @@
             <h2 class="text-4xl font-bold text-white">Checkout</h2>
         </div>
         <div class="formgrid grid bg-gray-800 p-3 border-round pt-4 mx-1">
-            
+
             <div class="field col-12 md:col-5">
                 <label class="text-white">Event</label>
-                <Dropdown v-model="selectedEvent" :options="events.data" optionLabel="eventName" placeholder="Select Event" class="w-full bg-white" @change="changedEvent"/>
+                <Dropdown v-model="selectedEvent" :options="events.data" optionLabel="eventName"
+                    placeholder="Select Event" class="w-full bg-white" @change="changedEvent" />
             </div>
             <div class="field col-12 md:col-5">
                 <label class="text-white">Ticket Category</label>
-                <Dropdown v-model="selectedCategory" :options="selectedEvent ? selectedEvent.categoryList : []" optionLabel="categoryName" placeholder="Select Category" class="w-full bg-white" @change="updateTotalPrice" >
+                <Dropdown v-model="selectedCategory" :options="selectedEvent ? selectedEvent.categoryList : []"
+                    optionLabel="categoryName" placeholder="Select Category" class="w-full bg-white"
+                    @change="updateTotalPrice">
                     <template #value="slotProps">
                         <div v-if="slotProps.value" class="flex align-items-center">
                             <div class="flex align-items-center">
-                            <div>{{ slotProps.value.categoryName }} - ৳{{ slotProps.value.categoryPrice }}</div>
-                        </div>
+                                <div>{{ slotProps.value.categoryName }} - ৳{{ slotProps.value.categoryPrice }}</div>
+                            </div>
                         </div>
                         <span v-else>
                             {{ slotProps.placeholder }}
@@ -31,7 +34,8 @@
             </div>
             <div class="field col-12 md:col-2">
                 <label class="text-white">Number of Tickets</label>
-                <Dropdown v-model="numberOfTickets" :options="numberOfTicketsOpttions" @change="updateAttendeeCount" optionLabel="name" optionValue="value" class="w-full bg-white" />
+                <Dropdown v-model="numberOfTickets" :options="numberOfTicketsOpttions" @change="updateAttendeeCount"
+                    optionLabel="name" optionValue="value" class="w-full bg-white" />
             </div>
         </div>
 
@@ -39,41 +43,55 @@
             <div class="field col-12 md:col-12 text-white">
                 <h3>Attendee List</h3>
             </div>
-            <template  v-for="(attendee, index) in attendeeList">
+            <template v-for="(attendee, index) in attendeeList">
                 <div class="field col-12 md:col-5">
-                    <GlobalInputText :placeholder="'Name of attendee: '+index" v-model="attendee.ticketOwnerName"/>
+                    <GlobalInputText :placeholder="'Name of attendee: ' + index" v-model="attendee.ticketOwnerName" />
                 </div>
                 <div class="field col-12 md:col-4">
-                    <GlobalInputText placeholder="Email" v-model="attendee.ticketOwnerEmail"/>
+                    <GlobalInputText placeholder="Email" v-model="attendee.ticketOwnerEmail" />
                 </div>
                 <div class="field col-12 md:col-3">
-                    <GlobalInputText placeholder="Phone" v-model="attendee.ticketOwnerNumber"/>
+                    <GlobalInputText placeholder="Phone" v-model="attendee.ticketOwnerNumber" />
                 </div>
             </template>
             <div class="field col-12 md:col-10"></div>
-            
+
 
         </div>
         <div class="flex justify-content-center flex-wrap">
             <div class="flex align-items-center justify-content-center mt-5 h-3rem">
-                <div class="border-round text-4xl font-bold text-white">Total: ৳{{totalPrice}}</div>
+                <div class="border-round text-4xl font-bold text-white">Total: ৳{{ totalPrice }}</div>
             </div>
         </div>
         <div class="flex justify-content-center flex-wrap mt-4">
-            <Checkbox v-model="agreedToTerms" :binary="true" inputId="checkbox" />
-
-            <label for="checkbox" class="ml-2 text-white text-sm"> By clicking you agree to our Terms of Use, Privacy Policy & Refund Policy</label>
+            <div class="flex align-items-center">
+                <Checkbox v-model="agreedToTerms" :binary="true" inputId="checkbox" />
+                <label for="checkbox" class="ml-2 text-white text-sm">
+                    By clicking you agree to our
+                    <span class="text-blue-300 cursor-pointer" @click="termsConditions">Terms & Privacy
+                        Policy</span>,
+                    <span class="text-blue-300 cursor-pointer" @click="refundpolicy">Refund Policy</span>
+                </label>
+            </div>
         </div>
         <div class="flex justify-content-center flex-wrap mb-6">
-                <GlobalButton :disabled="!agreedToTerms" title="Purchase Tickets" class="flex align-items-center justify-content-center mt-5 w-4 h-3rem" @buttonTapped="purchaseTicket" />
+            <GlobalButton :disabled="!agreedToTerms" title="Purchase Tickets"
+                class="flex align-items-center justify-content-center mt-5 w-4 h-3rem" @buttonTapped="purchaseTicket" />
         </div>
     </div>
 </template>
-  
+
 <script setup>
+const refundpolicy = () => {
+    navigateTo("/refundpolicy")
+};
+
+const termsConditions = () => {
+    navigateTo("/termsAndConditions")
+};
 definePageMeta({
-  //   middleware: ["authMiddleware"]
-      middleware: 'auth'
+    //   middleware: ["authMiddleware"]
+    middleware: 'auth'
 })
 const { data: events } = await useFetch('https://api.countersbd.com/api/v1/event/all')
 const selectedEvent = ref();
@@ -161,7 +179,7 @@ const purchaseTicket = async () => {
             // Handle the response errors
         }
     })
-    
+
     //   if (responseData.value.responseCode === 200) {
     //     window.localStorage.setItem("token", responseData.value.data.token)
     //     const isAuthenticated = isAuthenticatedState()
@@ -172,7 +190,6 @@ const purchaseTicket = async () => {
 </script>
 
 <style lang="scss">
-
 .p-checkbox.p-highlight .p-checkbox-box {
     border-color: #FBAF44 !important;
     background: #FBAF44 !important;
@@ -184,6 +201,9 @@ const purchaseTicket = async () => {
     color: #ffffff;
 }
 
-
-
+/* Prevent the label from being clickable */
+.non-clickable-label {
+    pointer-events: none;
+    /* Disable pointer events on the label */
+}
 </style>
