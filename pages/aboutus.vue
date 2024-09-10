@@ -44,6 +44,14 @@
         Join us at Counters as we transform the ticketing experience in Bangladesh.
         Whether you are an event organizer or an attendee, our platform is designed to
         cater to your every need, ensuring that every event is a memorable experience 
+        <br/><br/>
+        <span class="font-bold mr-2">Trade License:</span>
+        TRAD/DNCC/ 150704 /2022
+        <br/><br/>
+        <span class="font-bold mr-2">Contact Us:</span><br/>
+        +8801711141345
+        <br/>
+        63/5, West Dhanmondi, Dhaka-1207
         </p>
         <div style="height: 120px;"></div>
     </div>
