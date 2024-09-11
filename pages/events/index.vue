@@ -8,7 +8,7 @@
               <Card style="overflow: hidden" class="bg-gray-800">
                   <template #header>
                     <div class="h-15rem overflow-hidden">
-                      <img alt="user header" src="https://countersbd-ticket-bucket.s3.ap-south-1.amazonaws.com/event_C216860256.jpg" class="w-full" />
+                      <img alt="user header" :src="event.eventImageUrl" class="w-full" />
                     </div>
                       
                   </template>
