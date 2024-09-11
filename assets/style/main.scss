@@ -18,7 +18,7 @@ body {
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
     color: $theme-yellow !important;
-    background: #FBAF4420 !important;
+    background: #d8212720 !important;
 }
 
 .p-dropdown:not(.p-disabled).p-focus {
@@ -27,13 +27,13 @@ body {
 }
 
 .p-checkbox.p-highlight .p-checkbox-box {
-  border-color: #FBAF44 !important;
-  background: #FBAF44 !important;
+  border-color: #d82127 !important;
+  background: #d82127 !important;
 }
 
 .p-checkbox:not(.p-disabled):has(.p-checkbox-input:hover).p-highlight .p-checkbox-box {
-  border-color: #FBAF44 !important;
-  background: #FBAF44 !important;
+  border-color: #d82127 !important;
+  background: #d82127 !important;
   color: #ffffff;
 }
 
@@ -45,34 +45,34 @@ body {
   color: white;
 }
 .p-menubar .p-menuitem.p-highlight > .p-menuitem-content {
-  background: #FBAF44;
+  background: #d82127;
 }
 .p-menubar {
-  background: #FBAF44;
+  background: #d82127;
 }
 .p-menuitem .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {
-  background: #FBAF44;
+  background: #d82127;
 }
 .p-menuitem .p-menubar-root-list > .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover {
-  background: #FBAF44;
+  background: #d82127;
 }
 
 .p-menubar .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content {
-  background: #FBAF44;
+  background: #d82127;
 }
 
 .p-focus{
-  background: #FBAF44;
+  background: #d82127;
   border-radius: 6px;
 }
 
 .p-menuitem-content:hover{
-  background: #FBAF44;
+  background: #d82127;
   border-radius: 6px;
 }
 
 .router-link-active {
-  background: #FBAF44;
+  background: #d82127;
 }
 
 .p-submenu-list {
@@ -128,7 +128,7 @@ body {
 // }
 
 // .p-menuitem-content:hover{
-//   background-color: #FBAF44;
+//   background-color: #d82127;
 // }
 
 // .p-menubar.p-menubar-mobile .p-menubar-button:focus {
@@ -170,7 +170,7 @@ body {
 //   margin: 0;
 //   padding: 8px 8px;
 //   border-radius: 5px;
-//   background-color: #FBAF44;
+//   background-color: #d82127;
 // }
 
 a {

@@ -85,7 +85,7 @@
                         </div>
                     </template>
                     <template #footer>
-                        <div @click="navigateTo('/checkout/'+selectedEvent.eventId+'/'+category.categoryId)" class="cursor-pointer p-2 border-round-xl text-center font-bold text-3xl" style="background-color: #FBAF44; color:black;">
+                        <div @click="navigateTo('/checkout/'+selectedEvent.eventId+'/'+category.categoryId)" class="cursor-pointer p-2 border-round-xl text-center font-bold text-3xl" style="background-color: #d82127; color:black;">
                             ৳{{ category.categoryPrice }}
                         </div>
                     </template>
@@ -110,7 +110,7 @@
 }
 
 .p-fieldset .p-fieldset-legend {
-    background: #FBAF44 !important;
+    background: #d82127 !important;
     color: #000 !important;
 }
 .p-fieldset .p-fieldset-content {

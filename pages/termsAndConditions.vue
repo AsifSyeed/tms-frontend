@@ -72,25 +72,25 @@
 
 <style lang="scss" scoped>
 a:link {
-color: #FBAF44 !important;
+color: #d82127 !important;
 background-color: transparent;
 text-decoration: none;
 }
 
 a:visited {
-color: #FBAF44 !important;
+color: #d82127 !important;
 background-color: transparent;
 text-decoration: none;
 }
 
 a:hover {
-color: #FBAF44 !important;
+color: #d82127 !important;
 background-color: transparent;
 text-decoration: underline;
 }
 
 a:active {
-color: #FBAF44 !important;
+color: #d82127 !important;
 background-color: transparent;
 text-decoration: underline;
 }

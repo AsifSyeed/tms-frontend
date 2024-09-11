@@ -191,13 +191,13 @@ const purchaseTicket = async () => {
 
 <style lang="scss">
 .p-checkbox.p-highlight .p-checkbox-box {
-    border-color: #FBAF44 !important;
-    background: #FBAF44 !important;
+    border-color: #d82127 !important;
+    background: #d82127 !important;
 }
 
 .p-checkbox:not(.p-disabled):has(.p-checkbox-input:hover).p-highlight .p-checkbox-box {
-    border-color: #FBAF44 !important;
-    background: #FBAF44 !important;
+    border-color: #d82127 !important;
+    background: #d82127 !important;
     color: #ffffff;
 }
 

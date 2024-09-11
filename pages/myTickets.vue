@@ -20,10 +20,10 @@
                             </div>
                             <div class="flex align-items-center justify-content-left w-full mt-1">
                                 <div class="text-sm font-bold p-1 px-2 border-round mr-2"
-                                    style="background-color: #FBAF44;">{{ event.ticketCategoryName }}</div>
+                                    style="background-color: #d82127;">{{ event.ticketCategoryName }}</div>
                                 <div class="text-sm font-bold p-1 px-2 border-round mr-2"
-                                    style="background-color: #FBAF44;">{{ getDate(event.validityDate) }}</div>
-                                <div class="text-sm font-bold p-1 px-2 border-round" style="background-color: #FBAF44;">
+                                    style="background-color: #d82127;">{{ getDate(event.validityDate) }}</div>
+                                <div class="text-sm font-bold p-1 px-2 border-round" style="background-color: #d82127;">
                                     {{ getTime(event.validityDate) }}</div>
                             </div>
                             <div class="flex align-items-center justify-content-left w-full pt-4">
@@ -56,10 +56,10 @@
                             </div>
                             <div class="flex align-items-center justify-content-left w-full mt-1">
                                 <div class="text-sm font-bold p-1 px-2 border-round mr-2"
-                                    style="background-color: #FBAF44;">{{ event.ticketCategoryName }}</div>
+                                    style="background-color: #d82127;">{{ event.ticketCategoryName }}</div>
                                 <div class="text-sm font-bold p-1 px-2 border-round mr-2"
-                                    style="background-color: #FBAF44;">{{ getDate(event.validityDate) }}</div>
-                                <div class="text-sm font-bold p-1 px-2 border-round" style="background-color: #FBAF44;">
+                                    style="background-color: #d82127;">{{ getDate(event.validityDate) }}</div>
+                                <div class="text-sm font-bold p-1 px-2 border-round" style="background-color: #d82127;">
                                     {{ getTime(event.validityDate) }}</div>
                             </div>
                             <div class="flex align-items-center justify-content-left w-full pt-4">
