@@ -8,7 +8,7 @@
             <div v-if="isSuccess" class="flex align-items-center justify-content-center" style="min-height: 78vh">
                 <div class="card flex flex-column p-7 bg-white border-round shadow-2 justify-content-center align-content-center align-items-center" style="width: 100%;">
                     <img src="~/assets/checked.png" alt="" class="h-8rem w-8rem mb-5">
-                    <div class="pb-5 text-xl font-bold">Transaction Successful!</div>
+                    <div class="pb-5 text-xl font-bold">We have mailed you the ticket/tickets with necessary information</div>
                     <div><span class="">Total Amount:</span> <span class="font-bold"> BDT {{ res.totalAmount }}</span></div>
                 </div>
             </div>
