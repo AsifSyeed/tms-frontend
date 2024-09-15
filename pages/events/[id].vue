@@ -36,10 +36,11 @@
     </div>
 
     <Fieldset legend="Event Details" class="mx-2 mt-4 text-white bg-transparent border-round-xl">
-        <p class="m-0">
+        <p class="m-0" style="white-space: pre-line;">
             {{ selectedEvent.eventDescription }}
         </p>
     </Fieldset>
+
 
     <div class="grid mt-4 mx-2 border-round-xl border-1">
         <div class="col-12 md:col-6 lg:col-6 border-round-xl font-bold">
