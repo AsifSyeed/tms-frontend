@@ -30,7 +30,6 @@
             
             <img :src="selectedEvent.eventImageUrl" class="w-12 h-22rem" style="object-fit: fill;">
             <div class="w-full h-22rem centered opacity-50" style="background-color: black;"></div>
-            <div class="text-7xl centered">{{ selectedEvent.eventName}}</div>
             
         </div>
     </div>
