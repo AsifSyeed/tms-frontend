@@ -51,7 +51,7 @@ console.log(events)
 <style>
 
 .soldOutButton {
-  background-color: #B00020 !important;
+  background-color: #ac1a1f !important;
 }
 
 a {

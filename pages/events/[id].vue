@@ -28,7 +28,7 @@
     <div class="px-2 mt-6">
         <div class="w-12 h-22rem border-round-xl overflow-hidden container">
             
-            <img :src="selectedEvent.eventImageUrl">
+            <img :src="selectedEvent.eventImageUrl" class="w-12 h-22rem" style="object-fit: fill;">
             <div class="w-full h-22rem centered opacity-50" style="background-color: black;"></div>
             <div class="text-7xl centered">{{ selectedEvent.eventName}}</div>
             
@@ -85,7 +85,7 @@
                         </div>
                     </template>
                     <template #footer>
-                        <div @click="navigateTo('/checkout/'+selectedEvent.eventId+'/'+category.categoryId)" class="cursor-pointer p-2 border-round-xl text-center font-bold text-3xl" style="background-color: #d82127; color:black;">
+                        <div @click="navigateTo('/checkout/'+selectedEvent.eventId+'/'+category.categoryId)" class="priceButton cursor-pointer p-2 border-round-xl text-center font-bold text-3xl">
                             ৳{{ category.categoryPrice }}
                         </div>
                     </template>
@@ -103,6 +103,20 @@
   transform: translate(-50%, -50%);
 }
 
+.priceButton {
+    background-color: #d82127;
+    color:white;
+    -webkit-transition: background-color 0.35s;
+    -moz-transition: background-color 0.35s;
+    -o-transition: background-color 0.35s;
+    transition: background-color 0.35s;
+}
+
+.priceButton:hover {
+    background-color: #ac1a1f;
+    color:white;
+}
+
 .container {
   position: relative;
   text-align: center;
@@ -111,7 +125,7 @@
 
 .p-fieldset .p-fieldset-legend {
     background: #d82127 !important;
-    color: #000 !important;
+    color: #fff !important;
 }
 .p-fieldset .p-fieldset-content {
     padding-top: 2rem;

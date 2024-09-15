@@ -15,7 +15,7 @@
                 <label class="text-white">Ticket Category</label>
                 <Dropdown v-model="selectedCategory" :options="selectedEvent ? selectedEvent.categoryList : []"
                     optionLabel="categoryName" placeholder="Select Category" class="w-full bg-white"
-                    @change="updateTotalPrice">
+                    @change="changedCategory">
                     <template #value="slotProps">
                         <div v-if="slotProps.value" class="flex align-items-center">
                             <div class="flex align-items-center">
@@ -35,7 +35,7 @@
             </div>
             <div class="field col-12 md:col-2">
                 <label class="text-white">Number of Tickets</label>
-                <Dropdown v-model="numberOfTickets" :options="numberOfTicketsOpttions" @change="updateAttendeeCount"
+                <Dropdown dropdownIcon="asd" :disabled="true" v-model="numberOfTickets" :options="numberOfTicketsOpttions" @change="updateAttendeeCount"
                     optionLabel="name" optionValue="value" class="w-full bg-white" />
             </div>
         </div>
@@ -198,6 +198,13 @@ const updateAttendeeCount = () => {
     updateTotalPrice()
 };
 
+const changedCategory = () => {
+    numberOfTickets.value = selectedCategory.value.minimumQuantity
+    numberOfTicketsOpttions.value = [{ name: selectedCategory.value.minimumQuantity, value: selectedCategory.value.minimumQuantity }]
+    updateTotalPrice()
+    updateAttendeeCount()
+}
+
 const updateTotalPrice = () => {
     if (selectedCategory.value) {
         console.log(selectedCategory.value.categoryPrice)
@@ -213,7 +220,10 @@ if (id !== null && category !== null) {
     console.log(category)
     selectedEvent.value = events.value.data.filter((e) => e.eventId === id)[0]
     selectedCategory.value = selectedEvent.value.categoryList.filter((e) => e.categoryId === parseInt(category, 10))[0]
+    numberOfTickets.value = selectedCategory.value.minimumQuantity
+    numberOfTicketsOpttions.value = [{ name: selectedCategory.value.minimumQuantity, value: selectedCategory.value.minimumQuantity }]
     updateTotalPrice()
+    updateAttendeeCount()
 }
 
 const changedEvent = () => {
