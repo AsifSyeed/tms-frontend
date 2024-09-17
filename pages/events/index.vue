@@ -19,7 +19,7 @@
                   </template>
                   <template #footer>
                       <div class="flex gap-3 mt-1">
-                          <GlobalButton v-if="event.eventAvailableTickets > 0" title="Check Event" class="w-full" @button-tapped="navigateTo('/events/'+event.eventId)"/>
+                          <GlobalButton v-if="event.eventAvailableTickets > 0" title="Buy Ticket" class="w-full" @button-tapped="navigateTo('/events/'+event.eventId)"/>
                           <GlobalButton v-else title="Sold Out" class="w-full soldOutButton" :disabled="true" @button-tapped="navigateTo('/events/'+event.eventId)"/>
                       </div>
                   </template>
