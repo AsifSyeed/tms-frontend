@@ -5,8 +5,11 @@
     <div class="card flex flex-column p-7 bg-white border-round shadow-2 mb-3 lg-w-30 sm-w-90" style="height: 30%;">
       <div class="text-center mb-3 font-bold text-xl">Change Password</div>
       </br>
-      <div class="text-center mb-3 font-bold text-xl">An OTP has been sent to your respective email</div>
-        </br></br>
+      <div class="text-center mb-3 font-bold text-xl">
+        An OTP has been sent to your respective
+        <span class="text-custom-red">email</span>
+      </div>
+      </br></br>
       <GlobalInputText type="password" v-model="oldPassword" placeholder="Old Password"
         class="w-full mb-2 border-round" />
       <GlobalInputText type="password" v-model="newPassword" placeholder="New Password"
@@ -47,7 +50,7 @@ useFetch('https://api.countersbd.com/api/v1/user/me', {
     "Authorization": token
   }
 }).then(res => {
-  const data:any = res.data.value
+  const data: any = res.data.value
   const error = res.error.value
   if (error) {
     // dealing error
@@ -175,6 +178,10 @@ a:hover {
 /* Mouse over link */
 a:active {
   color: $theme-yellow;
+}
+
+.text-custom-red {
+    color: #ac1a1f;
 }
 
 /* Selected link   */

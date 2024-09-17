@@ -199,8 +199,8 @@ const updateAttendeeCount = () => {
 };
 
 const changedCategory = () => {
-    numberOfTickets.value = selectedCategory.value.minimumQuantity
-    numberOfTicketsOpttions.value = [{ name: selectedCategory.value.minimumQuantity, value: selectedCategory.value.minimumQuantity }]
+    numberOfTickets.value = selectedCategory.value.maximumQuantity
+    numberOfTicketsOpttions.value = [{ name: selectedCategory.value.maximumQuantity, value: selectedCategory.value.maximumQuantity }]
     updateTotalPrice()
     updateAttendeeCount()
 }
@@ -220,8 +220,8 @@ if (id !== null && category !== null) {
     console.log(category)
     selectedEvent.value = events.value.data.filter((e) => e.eventId === id)[0]
     selectedCategory.value = selectedEvent.value.categoryList.filter((e) => e.categoryId === parseInt(category, 10))[0]
-    numberOfTickets.value = selectedCategory.value.minimumQuantity
-    numberOfTicketsOpttions.value = [{ name: selectedCategory.value.minimumQuantity, value: selectedCategory.value.minimumQuantity }]
+    numberOfTickets.value = selectedCategory.value.maximumQuantity
+    numberOfTicketsOpttions.value = [{ name: selectedCategory.value.maximumQuantity, value: selectedCategory.value.maximumQuantity }]
     updateTotalPrice()
     updateAttendeeCount()
 }
