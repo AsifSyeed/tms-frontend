@@ -60,6 +60,12 @@ const items = ref([
         command: () => {
             navigateTo("/aboutus")
         }
+    },
+    {
+        label: 'Contact Us',
+        command: () => {
+            navigateTo("/contactus")
+        }
     }, 
     {
         label: 'User',
