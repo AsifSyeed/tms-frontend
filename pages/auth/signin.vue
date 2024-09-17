@@ -2,7 +2,7 @@
   <div class=" flex flex-column flex-wrap justify-content-center align-content-center align-items-center"
     style="height: 100%; min-height: 98vh">
     <Toast />
-    <img src="~/assets/Logo_new.png" alt="" class="max-w-18rem mb-5">
+    <img src="~/assets/Logo_big.png" alt="" class="max-w-18rem mb-5">
     <div class="card flex flex-column p-7 bg-white border-round shadow-2 mb-3 lg-w-30 sm-w-90" style="height: 30%;">
       <GlobalInputText type="text" v-model="email" placeholder="Email" class="w-full mb-2 border-round" />
       <GlobalInputText type="password" v-model="password" placeholder="Password" class="w-full mb-4 border-round" />

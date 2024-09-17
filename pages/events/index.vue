@@ -8,7 +8,7 @@
               <Card style="overflow: hidden" class="bg-gray-800">
                   <template #header>
                     <div class="h-15rem overflow-hidden">
-                      <img alt="user header" :src="event.eventImageUrl" class="w-full" />
+                      <img alt="user header" :src="event.eventThumbnailUrl" class="w-full" />
                     </div>
                       
                   </template>

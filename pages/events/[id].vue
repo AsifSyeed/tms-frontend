@@ -26,10 +26,10 @@
 <template>
   <div class="text-white mb-8 pb-6">
     <div class="px-2 mt-6">
-        <div class="w-12 h-22rem border-round-xl overflow-hidden container">
+        <div class="w-12 h-12rem md:h-29rem border-round-xl overflow-hidden container">
             
-            <img :src="selectedEvent.eventImageUrl" class="w-12 h-22rem" style="object-fit: fill;">
-            <div class="w-full h-22rem centered opacity-50" style="background-color: black;"></div>
+            <img :src="selectedEvent.eventBannerUrl" class="w-12 h-12rem md:h-29rem" style="object-fit: cover;">
+            <div class="w-full h-29rem md:h-29rem centered opacity-50" style="background-color: black;"></div>
             
         </div>
     </div>
