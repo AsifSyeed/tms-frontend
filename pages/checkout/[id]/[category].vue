@@ -209,7 +209,7 @@ const updateTotalPrice = () => {
     if (selectedCategory.value) {
         console.log(selectedCategory.value.categoryPrice)
         console.log(numberOfTickets.value)
-        totalPrice.value = selectedCategory.value.categoryPrice * numberOfTickets.value
+        totalPrice.value = selectedCategory.value.categoryPrice
     } else {
         totalPrice.value = 0
     }
