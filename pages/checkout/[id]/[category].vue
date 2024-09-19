@@ -60,12 +60,19 @@
 
 
         </div>
+        <div class="flex justify-content-center flex-wrap mb-6 mt-5 mx-1">
+            <div class="flex align-items-center justify-content-center mb-2 md:mr-2 w-full md:w-3">
+                <GlobalInputText placeholder="Coupon Code" v-model="couponCode"/>
+            </div>
+            <GlobalButton title="Apply"
+                class="flex align-items-center justify-content-center mb-2 w-full md:w-1" @buttonTapped="couponApplied" />
+        </div>
         <div class="flex justify-content-center flex-wrap">
-            <div class="flex align-items-center justify-content-center mt-5 h-3rem">
+            <div class="flex align-items-center justify-content-center h-3rem">
                 <div class="border-round text-4xl font-bold text-white">Total: ৳{{ totalPrice }}</div>
             </div>
         </div>
-        <div class="flex justify-content-center flex-wrap mt-4">
+        <div class="flex justify-content-center flex-wrap mt-4 mx-1">
             <div class="flex align-items-center">
                 <Checkbox v-model="agreedToTerms" :binary="true" inputId="checkbox" />
                 <label for="checkbox" class="ml-2 text-white text-sm">
@@ -76,9 +83,9 @@
                 </label>
             </div>
         </div>
-        <div class="flex justify-content-center flex-wrap mb-6">
+        <div class="flex justify-content-center flex-wrap mb-6 mx-1">
             <GlobalButton :disabled="!canProceed()" title="Purchase Tickets"
-                class="flex align-items-center justify-content-center mt-3 w-4 h-3rem" @buttonTapped="purchaseTicket" />
+                class="flex align-items-center justify-content-center mt-3 w-full md:w-4 h-3rem" @buttonTapped="purchaseTicket" />
         </div>
         <div style="height: 120px;"></div>
     </div>
@@ -104,6 +111,7 @@ const toast = useToast()
 let selectedEvent = ref();
 const selectedCategory = ref();
 const agreedToTerms = ref(false);
+const couponCode = ref("")
 
 const numberOfTickets = ref(1);
 const numberOfTicketsOpttions = ref([
@@ -229,6 +237,10 @@ if (id !== null && category !== null) {
 const changedEvent = () => {
     selectedCategory.value = null
     updateTotalPrice()
+};
+
+const couponApplied = () => {
+    console.log(couponCode.value)
 };
 
 const purchaseTicket = async () => {
