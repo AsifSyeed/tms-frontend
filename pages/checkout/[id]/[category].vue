@@ -35,8 +35,9 @@
             </div>
             <div class="field col-12 md:col-2">
                 <label class="text-white">Number of Tickets</label>
-                <Dropdown dropdownIcon="asd" :disabled="true" v-model="numberOfTickets" :options="numberOfTicketsOpttions" @change="updateAttendeeCount"
-                    optionLabel="name" optionValue="value" class="w-full bg-white" />
+                <Dropdown dropdownIcon="asd" :disabled="true" v-model="numberOfTickets"
+                    :options="numberOfTicketsOpttions" @change="updateAttendeeCount" optionLabel="name"
+                    optionValue="value" class="w-full bg-white" />
             </div>
         </div>
 
@@ -60,13 +61,22 @@
 
 
         </div>
-        <div class="flex justify-content-center flex-wrap mb-6 mt-5 mx-1">
-            <div class="flex align-items-center justify-content-center mb-2 md:mr-2 w-full md:w-3">
-                <GlobalInputText placeholder="Coupon Code" v-model="couponCode"/>
+        <div class="flex justify-content-start flex-wrap mb-6 mt-5 mx-1">
+            <div class="flex flex-column align-items-start justify-content-center mb-2 md:mr-2 w-full md:w-3">
+                <!-- Coupon Input Field -->
+                <GlobalInputText placeholder="Coupon Code" v-model="couponCode" />
+
+                <!-- Display the coupon message just below the input field -->
+                <div v-if="couponMessage" class="text-white text-sm mt-2 w-full">
+                    <span :class="couponMessageClass">{{ couponMessage }}</span>
+                </div>
             </div>
-            <GlobalButton title="Apply"
-                class="flex align-items-center justify-content-center mb-2 w-full md:w-1" @buttonTapped="couponApplied" />
+
+            <!-- Apply Button (Prevent it from resizing) -->
+            <GlobalButton title="Apply" class="flex align-items-center justify-content-center mb-2 w-full md:w-1 h-3rem"
+                @buttonTapped="couponApplied" />
         </div>
+
         <div class="flex justify-content-center flex-wrap">
             <div class="flex align-items-center justify-content-center h-3rem">
                 <div class="border-round text-4xl font-bold text-white">Total: ৳{{ totalPrice }}</div>
@@ -85,7 +95,8 @@
         </div>
         <div class="flex justify-content-center flex-wrap mb-6 mx-1">
             <GlobalButton :disabled="!canProceed()" title="Purchase Tickets"
-                class="flex align-items-center justify-content-center mt-3 w-full md:w-4 h-3rem" @buttonTapped="purchaseTicket" />
+                class="flex align-items-center justify-content-center mt-3 w-full md:w-4 h-3rem"
+                @buttonTapped="purchaseTicket" />
         </div>
         <div style="height: 120px;"></div>
     </div>
@@ -110,14 +121,19 @@ const toast = useToast()
 
 const validCoupons = ref(['RELEVENT5000', 'BARTA5000', 'COUNTERS5000']); // Add your valid coupons here
 
+const couponMessage = ref(''); // To hold the coupon validation message
+const couponMessageClass = ref(''); // To apply styles based on success or error
+
 const couponApplied = () => {
     if (validCoupons.value.includes(couponCode.value)) {
-        toast.add({ severity: 'success', summary: 'Success!', detail: 'Coupon applied', life: 3000 });
+        couponMessage.value = 'Coupon applied'; couponMessageClass.value = 'text-green-500'; // Style for success message
     } else {
-        toast.add({ severity: 'error', summary: 'Invalid Coupon!', detail: 'Coupon code is invalid', life: 3000 });
+        couponMessage.value = 'Invalid Coupon';
+        couponMessageClass.value = 'text-red-500'; // Style for error message
         couponCode.value = ''; // Clear the coupon input field
     }
 };
+
 
 
 let selectedEvent = ref();
