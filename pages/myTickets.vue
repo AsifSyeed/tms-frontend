@@ -10,7 +10,7 @@
                     class="formgrid grid bg-gray-800 border-round h-25rem md:h-10rem overflow-hidden mb-4">
                     <div class="field col-12 md:col-3 m-0 p-0 h-12rem md:h-10rem">
                         <img alt="user header"
-                            :src="event.eventThumbnailUrl"
+                            :src="event.eventImageUrl"
                             class=" w-full h-full" style="object-fit: cover" />
                     </div>
                     <div class="field col-12 md:col-7 m-0 p-0">
@@ -25,11 +25,7 @@
                                     style="background-color: #d82127;">{{ getDate(event.validityDate) }}</div>
                                 <div class="text-sm font-bold p-1 px-2 border-round" style="background-color: #d82127;">
                                     {{ getTime(event.validityDate) }}</div>
-                            </div>
-                            <div class="flex align-items-center justify-content-left w-full pt-4">
-                                <div class="text-xl font-bold text-white">৳ {{ event.ticketPrice }}</div>
-                            </div>
-
+                                </div>
                         </div>
                     </div>
                     <div class="field col-12 md:col-2 m-0 p-0">
@@ -61,9 +57,6 @@
                                     style="background-color: #d82127;">{{ getDate(event.validityDate) }}</div>
                                 <div class="text-sm font-bold p-1 px-2 border-round" style="background-color: #d82127;">
                                     {{ getTime(event.validityDate) }}</div>
-                            </div>
-                            <div class="flex align-items-center justify-content-left w-full pt-4">
-                                <div class="text-xl font-bold text-white">৳ {{ event.ticketPrice }}</div>
                             </div>
 
                         </div>

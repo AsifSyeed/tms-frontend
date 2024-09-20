@@ -108,6 +108,18 @@ const userToken = useCookie('userToken')
 const token = "Bearer " + userToken.value
 const toast = useToast()
 
+const validCoupons = ref(['RELEVENT5000', 'BARTA5000', 'COUNTERS5000']); // Add your valid coupons here
+
+const couponApplied = () => {
+    if (validCoupons.value.includes(couponCode.value)) {
+        toast.add({ severity: 'success', summary: 'Success!', detail: 'Coupon applied', life: 3000 });
+    } else {
+        toast.add({ severity: 'error', summary: 'Invalid Coupon!', detail: 'Coupon code is invalid', life: 3000 });
+        couponCode.value = ''; // Clear the coupon input field
+    }
+};
+
+
 let selectedEvent = ref();
 const selectedCategory = ref();
 const agreedToTerms = ref(false);
@@ -237,10 +249,6 @@ if (id !== null && category !== null) {
 const changedEvent = () => {
     selectedCategory.value = null
     updateTotalPrice()
-};
-
-const couponApplied = () => {
-    console.log(couponCode.value)
 };
 
 const purchaseTicket = async () => {
