@@ -249,6 +249,7 @@ const purchaseTicket = async () => {
         ticketCategory: selectedCategory.value.categoryId,
         ticketOwnerInformation: attendeeList.value,
         totalPrice: totalPrice.value,
+        couponCode: couponCode.value
     }
 
     console.log(token)
