@@ -60,11 +60,42 @@
 
 
         </div>
-        <div class="flex justify-content-center flex-wrap">
-            <div class="flex align-items-center justify-content-center mt-5 h-3rem">
-                <div class="border-round text-4xl font-bold text-white">Total: ৳{{ totalPrice }}</div>
+
+        <div class="flex justify-content-start flex-wrap mb-6 mt-5 mx-1">
+            <div class="flex flex-column align-items-start justify-content-center mb-2 md:mr-2 w-full md:w-3">
+                <!-- Coupon Input Field -->
+                <!-- Coupon Input Field with @input event -->
+                <GlobalInputText placeholder="Coupon Code" v-model="couponCode" @input="clearCouponMessage" />
+
+                <!-- Display the coupon message just below the input field -->
+                <div v-if="couponMessage" class="text-white text-sm mt-2 w-full">
+                    <span :class="couponMessageClass">{{ couponMessage }}</span>
+                </div>
+            </div>
+
+            <!-- Apply Button (Prevent it from resizing) -->
+            <GlobalButton title="Apply" class="flex align-items-center justify-content-center mb-2 w-full md:w-1 h-3rem"
+                @buttonTapped="couponApplied" />
+        </div>
+
+
+        <div class="w-full flex flex-column justify-content-center align-items-center">
+            <div class="w-full flex justify-content-center mt-5 h-3rem">
+                <div class="border-round text-2xl font-bold text-white">Total: ৳{{ totalPrice }}</div>
+            </div>
+
+            <div class="w-full flex justify-content-center mt-5 h-3rem" v-if="discount > 0">
+                <div class="border-round text-2xl font-bold" style="color: #d82127;">Discounted: -৳{{ discount }}</div>
+            </div>
+
+
+            <div class="w-full flex justify-content-center mt-5 h-3rem" v-if="discount > 0">
+                <div class="border-round text-4xl font-bold" style="color: #28a745;">Discounted Total: ৳{{
+                    discountedTotal }}
+                </div>
             </div>
         </div>
+
         <div class="flex justify-content-center flex-wrap mt-4">
             <div class="flex align-items-center">
                 <Checkbox v-model="agreedToTerms" :binary="true" inputId="checkbox" />
@@ -97,6 +128,66 @@ definePageMeta({
     middleware: 'auth'
 })
 
+onMounted(() => {
+    fetchReferral();
+});
+
+let totalPrice = ref(0)
+let discount = ref(0)
+let discountedTotal = totalPrice
+
+const clearCouponMessage = () => {
+    couponMessage.value = ''; // Clear the message
+    couponMessageClass.value = ''; // Reset the class
+    discount.value = 0; // Reset discount
+    updateTotalPrice(); // Update the total price
+};
+
+// Fetch referral coupons from the API
+const fetchReferral = async () => {
+    try {
+        const { data, error } = await useFetch(`https://api.countersbd.com/api/v1/referral/all?eventId=${selectedEvent.value.eventId}`, {
+            headers: {
+                "Authorization": token
+            },
+            method: "GET"
+        });
+
+        if (error.value) {
+            // Handle error
+            toast.add({ severity: 'error', summary: 'Error!', detail: error.value.data.message, life: 3000 });
+        } else if (data.value && data.value.responseCode === 200) {
+            // Store all the valid coupons in the list
+            validCoupons.value = data.value.data.map((coupon) => ({
+                referralCode: coupon.referralCode,
+                referralDiscount: coupon.referralDiscount
+            }));
+            console.log('Valid Coupons:', validCoupons.value);
+
+            // Call the function to apply referral type 1 coupon
+            applyReferralTypeOneCoupon(data.value.data);
+        } else {
+            toast.add({ severity: 'error', summary: 'Error!', detail: data.value.message, life: 3000 });
+        }
+    } catch (err) {
+        console.error("API call failed", err);
+        toast.add({ severity: 'error', summary: 'Error!', detail: 'Failed to fetch coupons', life: 3000 });
+    }
+};
+
+// Apply the referral type 1 coupon automatically
+const applyReferralTypeOneCoupon = (coupons: any[]) => {
+    const referralCoupon = coupons.find((coupon: any) => coupon.referralType === 1);
+
+    if (referralCoupon) {
+        couponCode.value = referralCoupon.referralCode;
+        console.log('Referral Coupon Applied:', referralCoupon);
+        couponApplied();
+    }
+};
+
+// You can call fetchReferral once the selectedEvent is set, for example, after an event is selected.
+
 const userToken = useCookie('userToken')
 const token = "Bearer " + userToken.value
 const toast = useToast()
@@ -104,6 +195,37 @@ const toast = useToast()
 let selectedEvent = ref();
 const selectedCategory = ref();
 const agreedToTerms = ref(false);
+
+const couponCode = ref("")
+const validCoupons = ref([]); // List of valid coupons
+const couponMessage = ref(''); // Message to display under the coupon field
+const couponMessageClass = ref(''); // Class to style the message
+
+const couponApplied = () => {
+    const coupon = validCoupons.value.find(coupon => coupon.referralCode === couponCode.value);
+
+    if (coupon) {
+        couponMessage.value = 'Coupon applied';
+        couponMessageClass.value = 'text-green-500'; // Apply green color for success
+
+        // Update discount
+        discount.value = coupon.referralDiscount; // Update with the applied coupon's discount
+    } else {
+        couponMessage.value = 'Invalid Coupon';
+        couponMessageClass.value = 'text-red-500'; // Apply red color for error
+        couponCode.value = ''; // Clear the coupon field if invalid
+
+        // Reset discount
+        discount.value = 0; // Reset discount
+    }
+
+    // Update discounted total
+    updateTotalPrice();
+};
+
+const calculateDiscountedTotal = () => {
+    return totalPrice.value - discount.value;
+};
 
 const numberOfTickets = ref(1);
 const numberOfTicketsOpttions = ref([
@@ -127,7 +249,6 @@ const attendeeList = ref([
         ticketOwnerNumber: ""
     }
 ])
-let totalPrice = ref(0)
 
 const { data: events } = await useFetch('https://api.countersbd.com/api/v1/event/all')
 
@@ -203,6 +324,8 @@ const updateTotalPrice = () => {
         console.log(selectedCategory.value.categoryPrice)
         console.log(numberOfTickets.value)
         totalPrice.value = selectedCategory.value.categoryPrice * numberOfTickets.value
+        let discountedUnitPrice = selectedCategory.value.categoryPrice - discount.value
+        discountedTotal.value = discountedUnitPrice * numberOfTickets.value
     } else {
         totalPrice.value = 0
     }

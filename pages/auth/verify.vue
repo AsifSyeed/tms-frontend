@@ -157,7 +157,15 @@ const onSubmit = async () => {
                 if (data.responseCode !== null && data.responseCode === 200) {
                     const session = useCookie('otpSession')
                     session.value = null
-                    navigateTo('/auth/signin')
+                    if (code === '1') {
+                        const userToken = useCookie('userToken')
+                        userToken.value = data.data.token
+                        const isAuthenticated = isAuthenticatedState()
+                        isAuthenticated.value = true
+                        navigateTo("/")
+                    } else {
+                        navigateTo("/auth/signin")
+                    }
                 } else {
                     toast.add({ severity: 'error', summary: 'Error!', detail: data.message, life: 3000 });
                 }
