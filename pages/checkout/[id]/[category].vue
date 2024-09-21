@@ -134,7 +134,7 @@ onMounted(() => {
 
 let totalPrice = ref(0)
 let discount = ref(0)
-let discountedTotal = totalPrice
+let discountedTotal = ref(0)
 
 const clearCouponMessage = () => {
     couponMessage.value = ''; // Clear the message
@@ -219,12 +219,7 @@ const couponApplied = () => {
         discount.value = 0; // Reset discount
     }
 
-    // Update discounted total
     updateTotalPrice();
-};
-
-const calculateDiscountedTotal = () => {
-    return totalPrice.value - discount.value;
 };
 
 const numberOfTickets = ref(1);
