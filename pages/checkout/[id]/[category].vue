@@ -343,7 +343,9 @@ const purchaseTicket = async () => {
     const eventData = {
         eventId: selectedEvent.value.eventId,
         ticketCategory: selectedCategory.value.categoryId,
-        ticketOwnerInformation: attendeeList.value
+        ticketOwnerInformation: attendeeList.value,
+        totalPrice: discountedTotal.value,
+        couponCode: couponCode.value
     }
 
     console.log(token)
