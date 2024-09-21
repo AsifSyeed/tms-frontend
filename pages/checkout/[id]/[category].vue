@@ -15,7 +15,7 @@
                 <label class="text-white">Ticket Category</label>
                 <Dropdown v-model="selectedCategory" :options="selectedEvent ? selectedEvent.categoryList : []"
                     optionLabel="categoryName" placeholder="Select Category" class="w-full bg-white"
-                    @change="changedCategory">
+                    @change="updateTotalPrice">
                     <template #value="slotProps">
                         <div v-if="slotProps.value" class="flex align-items-center">
                             <div class="flex align-items-center">
@@ -35,9 +35,8 @@
             </div>
             <div class="field col-12 md:col-2">
                 <label class="text-white">Number of Tickets</label>
-                <Dropdown dropdownIcon="asd" :disabled="true" v-model="numberOfTickets"
-                    :options="numberOfTicketsOpttions" @change="updateAttendeeCount" optionLabel="name"
-                    optionValue="value" class="w-full bg-white" />
+                <Dropdown v-model="numberOfTickets" :options="numberOfTicketsOpttions" @change="updateAttendeeCount"
+                    optionLabel="name" optionValue="value" class="w-full bg-white" />
             </div>
         </div>
 
@@ -61,28 +60,12 @@
 
 
         </div>
-        <div class="flex justify-content-start flex-wrap mb-6 mt-5 mx-1">
-            <div class="flex flex-column align-items-start justify-content-center mb-2 md:mr-2 w-full md:w-3">
-                <!-- Coupon Input Field -->
-                <GlobalInputText placeholder="Coupon Code" v-model="couponCode" />
-
-                <!-- Display the coupon message just below the input field -->
-                <div v-if="couponMessage" class="text-white text-sm mt-2 w-full">
-                    <span :class="couponMessageClass">{{ couponMessage }}</span>
-                </div>
-            </div>
-
-            <!-- Apply Button (Prevent it from resizing) -->
-            <GlobalButton title="Apply" class="flex align-items-center justify-content-center mb-2 w-full md:w-1 h-3rem"
-                @buttonTapped="couponApplied" />
-        </div>
-
         <div class="flex justify-content-center flex-wrap">
-            <div class="flex align-items-center justify-content-center h-3rem">
+            <div class="flex align-items-center justify-content-center mt-5 h-3rem">
                 <div class="border-round text-4xl font-bold text-white">Total: ৳{{ totalPrice }}</div>
             </div>
         </div>
-        <div class="flex justify-content-center flex-wrap mt-4 mx-1">
+        <div class="flex justify-content-center flex-wrap mt-4">
             <div class="flex align-items-center">
                 <Checkbox v-model="agreedToTerms" :binary="true" inputId="checkbox" />
                 <label for="checkbox" class="ml-2 text-white text-sm">
@@ -93,10 +76,9 @@
                 </label>
             </div>
         </div>
-        <div class="flex justify-content-center flex-wrap mb-6 mx-1">
+        <div class="flex justify-content-center flex-wrap mb-6">
             <GlobalButton :disabled="!canProceed()" title="Purchase Tickets"
-                class="flex align-items-center justify-content-center mt-3 w-full md:w-4 h-3rem"
-                @buttonTapped="purchaseTicket" />
+                class="flex align-items-center justify-content-center mt-3 w-4 h-3rem" @buttonTapped="purchaseTicket" />
         </div>
         <div style="height: 120px;"></div>
     </div>
@@ -119,27 +101,9 @@ const userToken = useCookie('userToken')
 const token = "Bearer " + userToken.value
 const toast = useToast()
 
-const validCoupons = ref(['RELEVENT5000', 'BARTA5000', 'COUNTERS5000']); // Add your valid coupons here
-
-const couponMessage = ref(''); // To hold the coupon validation message
-const couponMessageClass = ref(''); // To apply styles based on success or error
-
-const couponApplied = () => {
-    if (validCoupons.value.includes(couponCode.value)) {
-        couponMessage.value = 'Coupon applied'; couponMessageClass.value = 'text-green-500'; // Style for success message
-    } else {
-        couponMessage.value = 'Invalid Coupon';
-        couponMessageClass.value = 'text-red-500'; // Style for error message
-        couponCode.value = ''; // Clear the coupon input field
-    }
-};
-
-
-
 let selectedEvent = ref();
 const selectedCategory = ref();
 const agreedToTerms = ref(false);
-const couponCode = ref("")
 
 const numberOfTickets = ref(1);
 const numberOfTicketsOpttions = ref([
@@ -234,18 +198,11 @@ const updateAttendeeCount = () => {
     updateTotalPrice()
 };
 
-const changedCategory = () => {
-    numberOfTickets.value = selectedCategory.value.maximumQuantity
-    numberOfTicketsOpttions.value = [{ name: selectedCategory.value.maximumQuantity, value: selectedCategory.value.maximumQuantity }]
-    updateTotalPrice()
-    updateAttendeeCount()
-}
-
 const updateTotalPrice = () => {
     if (selectedCategory.value) {
         console.log(selectedCategory.value.categoryPrice)
         console.log(numberOfTickets.value)
-        totalPrice.value = selectedCategory.value.categoryPrice
+        totalPrice.value = selectedCategory.value.categoryPrice * numberOfTickets.value
     } else {
         totalPrice.value = 0
     }
@@ -256,10 +213,7 @@ if (id !== null && category !== null) {
     console.log(category)
     selectedEvent.value = events.value.data.filter((e) => e.eventId === id)[0]
     selectedCategory.value = selectedEvent.value.categoryList.filter((e) => e.categoryId === parseInt(category, 10))[0]
-    numberOfTickets.value = selectedCategory.value.maximumQuantity
-    numberOfTicketsOpttions.value = [{ name: selectedCategory.value.maximumQuantity, value: selectedCategory.value.maximumQuantity }]
     updateTotalPrice()
-    updateAttendeeCount()
 }
 
 const changedEvent = () => {
@@ -271,9 +225,7 @@ const purchaseTicket = async () => {
     const eventData = {
         eventId: selectedEvent.value.eventId,
         ticketCategory: selectedCategory.value.categoryId,
-        ticketOwnerInformation: attendeeList.value,
-        totalPrice: totalPrice.value,
-        couponCode: couponCode.value
+        ticketOwnerInformation: attendeeList.value
     }
 
     console.log(token)
