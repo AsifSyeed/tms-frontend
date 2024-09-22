@@ -19,7 +19,7 @@
                     <template #value="slotProps">
                         <div v-if="slotProps.value" class="flex align-items-center">
                             <div class="flex align-items-center">
-                                <div>{{ slotProps.value.categoryName }} - ৳{{ slotProps.value.categoryPrice }}</div>
+                                <div>{{ slotProps.value.categoryName }} - ৳{{ slotProps.value.discountedPrice }}</div>
                             </div>
                         </div>
                         <span v-else>
@@ -28,7 +28,7 @@
                     </template>
                     <template #option="slotProps">
                         <div class="flex align-items-center">
-                            <div>{{ slotProps.option.categoryName }} - ৳{{ slotProps.option.categoryPrice }}</div>
+                            <div>{{ slotProps.option.categoryName }} - ৳{{ slotProps.option.discountedPrice }}</div>
                         </div>
                     </template>
                 </Dropdown>
@@ -80,18 +80,20 @@
 
 
         <div class="w-full flex flex-column justify-content-center align-items-center">
-            <div class="w-full flex justify-content-center mt-5 h-3rem">
-                <div class="border-round text-2xl font-bold text-white">Total: ৳{{ totalPrice }}</div>
-            </div>
+            <div class="price-breakdown-box p-4 border-round shadow-2 bg-gray-900">
+                <div class="w-full flex justify-content-between mt-2 h-2rem">
+                    <div class="text-xl font-bold text-white">Total:</div>
+                    <div class="text-xl font-bold text-white">৳{{ totalPrice }}</div>
+                </div>
 
-            <div class="w-full flex justify-content-center mt-5 h-3rem" v-if="discount > 0">
-                <div class="border-round text-2xl font-bold" style="color: #d82127;">Discounted: -৳{{ discount }}</div>
-            </div>
+                <div class="w-full flex justify-content-between mt-2 h-2rem" v-if="discount > 0">
+                    <div class="text-xl font-bold" style="color: #d82127;">Discounted:</div>
+                    <div class="text-xl font-bold" style="color: #d82127;">-৳{{ totalDiscount }}</div>
+                </div>
 
-
-            <div class="w-full flex justify-content-center mt-5 h-3rem" v-if="discount > 0">
-                <div class="border-round text-4xl font-bold" style="color: #28a745;">Discounted Total: ৳{{
-                    discountedTotal }}
+                <div class="w-full flex justify-content-between mt-2 h-2rem" v-if="discount > 0">
+                    <div class="text-2xl font-bold" style="color: #28a745;">Discounted Total:</div>
+                    <div class="text-2xl font-bold" style="color: #28a745;">৳{{ discountedTotal }}</div>
                 </div>
             </div>
         </div>
@@ -134,6 +136,7 @@ onMounted(() => {
 
 let totalPrice = ref(0)
 let discount = ref(0)
+let totalDiscount = ref(0)
 let discountedTotal = ref(0)
 
 const clearCouponMessage = () => {
@@ -319,8 +322,8 @@ const updateTotalPrice = () => {
         console.log(selectedCategory.value.categoryPrice)
         console.log(numberOfTickets.value)
         totalPrice.value = selectedCategory.value.categoryPrice * numberOfTickets.value
-        let discountedUnitPrice = selectedCategory.value.categoryPrice - discount.value
-        discountedTotal.value = discountedUnitPrice * numberOfTickets.value
+        totalDiscount.value = discount.value * numberOfTickets.value
+        discountedTotal.value = totalPrice.value - totalDiscount.value
     } else {
         totalPrice.value = 0
     }
@@ -393,5 +396,38 @@ const purchaseTicket = async () => {
 .non-clickable-label {
     pointer-events: none;
     /* Disable pointer events on the label */
+}
+
+.price-breakdown-box {
+    width: 100%;                 /* Full screen width */
+    border: 2px solid #cccccc;    /* Light gray border */
+    padding: 20px;                /* Padding inside the box */
+    border-radius: 8px;           /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: #1f1f1f;    /* Darker background for contrast */
+    margin-top: 20px;             /* Add some margin at the top */
+    box-sizing: border-box;       /* Ensures padding is included in the width calculation */
+}
+
+.text-xl {
+    font-size: 1.25rem;           /* Smaller font size for Total and Discount */
+}
+
+.text-2xl {
+    font-size: 1.5rem;            /* Discounted Total remains a bit larger */
+}
+
+.h-2rem {
+    height: 2rem;                 /* Smaller height for the elements */
+}
+
+.mt-2 {
+    margin-top: 0.5rem;           /* Reduce the margin between the sections */
+}
+
+.w-full.flex.justify-content-between {
+    display: flex;
+    justify-content: space-between; /* Titles on the left, prices on the right */
+    align-items: center;
 }
 </style>

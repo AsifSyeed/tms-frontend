@@ -18,7 +18,7 @@
                     <template #value="slotProps">
                         <div v-if="slotProps.value" class="flex align-items-center">
                             <div class="flex align-items-center">
-                                <div>{{ slotProps.value.categoryName }} - ৳{{ slotProps.value.categoryPrice }}</div>
+                                <div>{{ slotProps.value.categoryName }} - ৳{{ slotProps.value.discountedPrice }}</div>
                             </div>
                         </div>
                         <span v-else>
@@ -27,7 +27,7 @@
                     </template>
                     <template #option="slotProps">
                         <div class="flex align-items-center">
-                            <div>{{ slotProps.option.categoryName }} - ৳{{ slotProps.option.categoryPrice }}</div>
+                            <div>{{ slotProps.option.categoryName }} - ৳{{ slotProps.option.discountedPrice }}</div>
                         </div>
                     </template>
                 </Dropdown>

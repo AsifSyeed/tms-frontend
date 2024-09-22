@@ -85,7 +85,7 @@
                     </template>
                     <template #footer>
                         <div @click="navigateTo('/checkout/'+selectedEvent.eventId+'/'+category.categoryId)" class="priceButton cursor-pointer p-2 border-round-xl text-center font-bold text-3xl">
-                            ৳{{ category.categoryPrice }}
+                            ৳{{ category.discountedPrice }}
                         </div>
                     </template>
                 </Card>
