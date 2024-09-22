@@ -82,17 +82,17 @@
         <div class="w-full flex flex-column justify-content-center align-items-center">
             <div class="price-breakdown-box p-4 border-round shadow-2 bg-gray-900">
                 <div class="w-full flex justify-content-between mt-2 h-2rem">
-                    <div class="text-xl font-bold text-white">Total:</div>
+                    <div class="text-xl font-bold text-white">Regular Price:</div>
                     <div class="text-xl font-bold text-white">৳{{ totalPrice }}</div>
                 </div>
 
                 <div class="w-full flex justify-content-between mt-2 h-2rem" v-if="discount > 0">
-                    <div class="text-xl font-bold" style="color: #d82127;">Discounted:</div>
+                    <div class="text-xl font-bold" style="color: #d82127;">Discount:</div>
                     <div class="text-xl font-bold" style="color: #d82127;">-৳{{ totalDiscount }}</div>
                 </div>
 
                 <div class="w-full flex justify-content-between mt-2 h-2rem" v-if="discount > 0">
-                    <div class="text-2xl font-bold" style="color: #28a745;">Discounted Total:</div>
+                    <div class="text-2xl font-bold" style="color: #28a745;">Total:</div>
                     <div class="text-2xl font-bold" style="color: #28a745;">৳{{ discountedTotal }}</div>
                 </div>
             </div>
