@@ -159,7 +159,6 @@ const onSubmit = async () => {
                     session.value = null
                     if (code === '1') {
                         const userToken = useCookie('userToken')
-                        userToken.value = data.data.token
                         const isAuthenticated = isAuthenticatedState()
                         isAuthenticated.value = true
                         navigateTo("/")

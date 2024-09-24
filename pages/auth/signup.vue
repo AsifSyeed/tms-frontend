@@ -65,6 +65,8 @@ const onSubmit = async () => {
         if (data.responseCode !==  null && data.responseCode === 200) {
           const session = useCookie('otpSession')
           session.value = data.data.sessionId
+          const userToken = useCookie('userToken')
+          userToken.value = data.data.token
           navigateTo({
             path: '/auth/verify',
             query: { email: email.value, code: 1 }
