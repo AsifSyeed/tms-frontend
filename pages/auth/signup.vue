@@ -1,7 +1,7 @@
 <template>
   <div class=" flex flex-column flex-wrap justify-content-center align-content-center align-items-center"
     style="height: 100%; min-height: 98vh">
-    <Toast/>
+    <Toast />
     <img src="~/assets/Logo_big.png" alt="" class="max-w-18rem mb-5">
     <div class="card flex flex-column p-7 bg-white border-round shadow-2 lg-w-30 sm-w-90" style="height: 30%;">
       <GlobalInputText type="text" v-model="firstName" placeholder="First Name" class="w-full mb-2 border-round" />
@@ -10,9 +10,13 @@
       <GlobalInputText type="text" v-model="phoneNumber" placeholder="Phone Number" class="w-full mb-2 border-round" />
       <GlobalInputText type="text" v-model="email" placeholder="Email" class="w-full mb-2 border-round" />
       <GlobalInputText type="password" v-model="password" placeholder="Password" class="w-full mb-4 border-round" />
-      <GlobalButton @buttonTapped="handleButtonTap" title="Sign Up" :disabled="false"/>
-      <div class="w-full text-center pt-4">Already a member? <NuxtLink class="signupLink font-bold" to="/auth/signin">Sign In</NuxtLink> </div>
-      <div class="w-full text-center pt-4"> <NuxtLink class="signupLink font-bold" to="/">Back to Home</NuxtLink> </div>
+      <GlobalButton @buttonTapped="handleButtonTap" title="Sign Up" :disabled="false" />
+      <div class="w-full text-center pt-4">Already a member? <NuxtLink class="signupLink font-bold" to="/auth/signin">
+          Sign In</NuxtLink>
+      </div>
+      <div class="w-full text-center pt-4">
+        <NuxtLink class="signupLink font-bold" to="/">Back to Home</NuxtLink>
+      </div>
     </div>
   </div>
 </template>
@@ -35,12 +39,12 @@ const handleButtonTap = () => {
 };
 
 const onSubmit = async () => {
-  if (email.value === null || email.value === "" || 
-  password.value === null || password.value === "" || 
-  phoneNumber.value === null || phoneNumber.value === "" || 
-  userName.value === null || userName.value === "" || 
-  firstName.value === null || firstName.value === "" || 
-  lastName.value === null || lastName.value === "") {
+  if (email.value === null || email.value === "" ||
+    password.value === null || password.value === "" ||
+    phoneNumber.value === null || phoneNumber.value === "" ||
+    userName.value === null || userName.value === "" ||
+    firstName.value === null || firstName.value === "" ||
+    lastName.value === null || lastName.value === "") {
     toast.add({ severity: 'error', summary: 'Error', detail: "Please fill up all the fields", life: 3000 });
   } else {
     useFetch('https://api.countersbd.com/api/v1/user/signup', {
@@ -62,15 +66,12 @@ const onSubmit = async () => {
         toast.add({ severity: 'error', summary: 'Opps!', detail: error.data.message, life: 3000 });
       } else {
         console.log(data)
-        if (data.responseCode !==  null && data.responseCode === 200) {
-          const session = useCookie('otpSession')
-          session.value = data.data.sessionId
+        if (data.responseCode !== null && data.responseCode === 200) {
           const userToken = useCookie('userToken')
           userToken.value = data.data.token
-          navigateTo({
-            path: '/auth/verify',
-            query: { email: email.value, code: 1 }
-          })
+          const isAuthenticated = isAuthenticatedState()
+          isAuthenticated.value = true
+          navigateTo("/")
         } else {
           toast.add({ severity: 'error', summary: 'Opps!', detail: data.message, life: 3000 });
         }
@@ -89,8 +90,24 @@ const onSubmit = async () => {
   text-decoration-color: $theme-yellow;
 }
 
-a {color: $theme-yellow;}         /* Unvisited link  */
-a:visited {color:$theme-yellow;} /* Visited link    */
-a:hover {color:$theme-yellow;}   /* Mouse over link */
-a:active {color:$theme-yellow;}  /* Selected link   */
+a {
+  color: $theme-yellow;
+}
+
+/* Unvisited link  */
+a:visited {
+  color: $theme-yellow;
+}
+
+/* Visited link    */
+a:hover {
+  color: $theme-yellow;
+}
+
+/* Mouse over link */
+a:active {
+  color: $theme-yellow;
+}
+
+/* Selected link   */
 </style>
