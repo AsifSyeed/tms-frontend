@@ -10,7 +10,9 @@
       <GlobalInputText type="text" v-model="phoneNumber" placeholder="Phone Number" class="w-full mb-2 border-round" />
       <GlobalInputText type="text" v-model="email" placeholder="Email" class="w-full mb-2 border-round" />
       <GlobalInputText type="password" v-model="password" placeholder="Password" class="w-full mb-4 border-round" />
-      <GlobalButton @buttonTapped="handleButtonTap" title="Sign Up" :disabled="false" />
+      <!-- Loader and Sign Up button -->
+      <div v-if="loading" class="loader">Loading...</div>
+      <GlobalButton v-else @buttonTapped="handleButtonTap" title="Sign Up" :disabled="loading" />
       <div class="w-full text-center pt-4">Already a member? <NuxtLink class="signupLink font-bold" to="/auth/signin">
           Sign In</NuxtLink>
       </div>
@@ -34,6 +36,7 @@ const userName = ref(null);
 const firstName = ref(null);
 const lastName = ref(null);
 const toast = useToast()
+const loading = ref(false); // Loading state
 const handleButtonTap = () => {
   onSubmit()
 };
@@ -47,6 +50,7 @@ const onSubmit = async () => {
     lastName.value === null || lastName.value === "") {
     toast.add({ severity: 'error', summary: 'Error', detail: "Please fill up all the fields", life: 3000 });
   } else {
+    loading.value = true
     useFetch('https://api.countersbd.com/api/v1/user/signup', {
       method: "POST",
       body: {
@@ -64,6 +68,9 @@ const onSubmit = async () => {
       if (error) {
         // dealing error
         toast.add({ severity: 'error', summary: 'Opps!', detail: error.data.message, life: 3000 });
+        console.log(error);
+        
+        loading.value = false
       } else {
         console.log(data)
         if (data.responseCode !== null && data.responseCode === 200) {
@@ -71,12 +78,19 @@ const onSubmit = async () => {
           userToken.value = data.data.token
           const isAuthenticated = isAuthenticatedState()
           isAuthenticated.value = true
+          loading.value = false
           navigateTo("/")
         } else {
+          loading.value = false
+          console.log(data);
+          
           toast.add({ severity: 'error', summary: 'Opps!', detail: data.message, life: 3000 });
         }
       }
     }, error => {
+      loading.value = false
+      console.log(error);
+      
       toast.add({ severity: 'error', summary: 'Opps!', detail: error.data.message, life: 3000 });
     })
   }
@@ -106,6 +120,13 @@ a:hover {
 
 /* Mouse over link */
 a:active {
+  color: $theme-yellow;
+}
+
+/* Loader styles */
+.loader {
+  font-size: 1.2rem;
+  text-align: center;
   color: $theme-yellow;
 }
 
