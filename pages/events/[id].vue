@@ -73,7 +73,7 @@ function getTime(input) {
                         <i class="pi pi-map-marker text-white text-center" style="font-size: 3rem"></i>
                     </div>
                     <div class="flex align-items-center justify-content-center">
-                        <p class="text-center text-2xl p-3">"selectedEvent.location"</p>
+                        <p class="text-center text-2xl p-3">{{ selectedEvent.eventLocation }}</p>
                     </div>
                 </div>
             </div>
