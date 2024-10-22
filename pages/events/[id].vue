@@ -42,32 +42,43 @@ function getTime(input) {
 
 
         <div class="grid mt-4 mx-2 border-round-xl border-1">
-            <div class="col-12 md:col-6 lg:col-6 border-round-xl font-bold">
+            <!-- Event Date -->
+            <div class="col-12 md:col-4 lg:col-4 border-round-xl font-bold">
                 <div class="flex justify-content-center flex-wrap">
                     <div class="flex align-items-center justify-content-center">
-                        <i class="pi pi-calendar text-white text-center " style="font-size: 3rem">
-                        </i>
+                        <i class="pi pi-calendar text-white text-center" style="font-size: 3rem"></i>
                     </div>
                     <div class="flex align-items-center justify-content-center">
-                        <p class="text-center text-2xl p-3 ">{{ getDate(selectedEvent.eventStartDate) }}
-                        </p>
+                        <p class="text-center text-2xl p-3">{{ getDate(selectedEvent.eventStartDate) }}</p>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 md:col-6 lg:col-6 border-round-xl font-bold">
+            <!-- Event Time -->
+            <div class="col-12 md:col-4 lg:col-4 border-round-xl font-bold">
                 <div class="flex justify-content-center flex-wrap">
                     <div class="flex align-items-center justify-content-center">
-                        <i class="pi pi-clock text-white text-center " style="font-size: 3rem">
-                        </i>
+                        <i class="pi pi-clock text-white text-center" style="font-size: 3rem"></i>
                     </div>
                     <div class="flex align-items-center justify-content-center">
-                        <p class="text-center text-2xl p-3">{{ getTime(selectedEvent.eventStartDate) }}
-                        </p>
+                        <p class="text-center text-2xl p-3">{{ getTime(selectedEvent.eventStartDate) }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Location -->
+            <div class="col-12 md:col-4 lg:col-4 border-round-xl font-bold">
+                <div class="flex justify-content-center flex-wrap">
+                    <div class="flex align-items-center justify-content-center">
+                        <i class="pi pi-map-marker text-white text-center" style="font-size: 3rem"></i>
+                    </div>
+                    <div class="flex align-items-center justify-content-center">
+                        <p class="text-center text-2xl p-3">"selectedEvent.location"</p>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <!-- <div class="mt-4 text-center text-2xl font-bold">Ticket Categories</div> -->
         <div class="grid mt-4 px-2">
@@ -76,11 +87,6 @@ function getTime(input) {
                     <template #title>
                         <div class="text-white text-center">
                             {{ category.categoryName }}
-                        </div>
-                    </template>
-                    <template #content>
-                        <div class="text-white text-center">
-                            {{ category.categoryDescription }}
                         </div>
                     </template>
                     <template #footer>
@@ -92,7 +98,7 @@ function getTime(input) {
                         <!-- Conditionally render the "Discounted Price!" text if discountedPrice is not equal to categoryPrice -->
                         <div v-if="category.discountedPrice !== category.categoryPrice"
                             class="text-green-500 text-center mt-2">
-                            Discounted Price!
+                            {{ category.categoryDescription }}
                         </div>
                     </template>
                 </Card>
