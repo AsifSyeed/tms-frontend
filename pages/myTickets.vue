@@ -44,7 +44,7 @@
                 <div v-for="event in pastEvents" :key="event.ticketId"
                     class="formgrid grid bg-gray-800 border-round h-25rem md:h-10rem overflow-hidden mb-4">
                     <div class="field col-12 md:col-3 m-0 p-0 h-12rem md:h-10rem">
-                        <img alt="user header" :src="event.eventThumbnailUrl" class=" w-full h-full"
+                        <img alt="user header" :src="event.eventImageUrl" class=" w-full h-full"
                             style="object-fit: cover" />
                     </div>
                     <div class="field col-12 md:col-7 m-0 p-0">
