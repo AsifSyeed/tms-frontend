@@ -40,45 +40,32 @@ function getTime(input) {
             </p>
         </Fieldset>
 
-
-        <div class="grid mt-4 mx-2 border-round-xl border-1">
-            <!-- Event Date -->
-            <div class="col-12 md:col-4 lg:col-4 border-round-xl font-bold">
-                <div class="flex justify-content-center flex-wrap">
-                    <div class="flex align-items-center justify-content-center">
-                        <i class="pi pi-calendar text-white text-center" style="font-size: 3rem"></i>
+        <div class="grid mt-4 mx-2 border-round-xl border-1 d-flex justify-content-center">
+            <!-- Event Date and Time -->
+            <div
+                class="col-12 md:col-4 mt-4 lg:col-4 border-round-xl font-bold d-flex flex-column align-items-center justify-content-center">
+                <div class="text-center">
+                    <div class="d-flex align-items-center justify-content-center mb-2">
+                        <i class="pi pi-calendar text-white" style="font-size: 3rem; margin-right: 0.5rem;"></i>
+                        <i class="pi pi-clock text-white" style="font-size: 3rem;"></i>
                     </div>
-                    <div class="flex align-items-center justify-content-center">
-                        <p class="text-center text-2xl p-3">{{ getDate(selectedEvent.eventStartDate) }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Event Time -->
-            <div class="col-12 md:col-4 lg:col-4 border-round-xl font-bold">
-                <div class="flex justify-content-center flex-wrap">
-                    <div class="flex align-items-center justify-content-center">
-                        <i class="pi pi-clock text-white text-center" style="font-size: 3rem"></i>
-                    </div>
-                    <div class="flex align-items-center justify-content-center">
-                        <p class="text-center text-2xl p-3">{{ getTime(selectedEvent.eventStartDate) }}</p>
-                    </div>
+                    <p class="text-2xl">{{ getDate(selectedEvent.eventStartDate) }}, {{
+                        getTime(selectedEvent.eventStartDate) }}</p>
                 </div>
             </div>
 
             <!-- Event Location -->
-            <div class="col-12 md:col-4 lg:col-4 border-round-xl font-bold">
-                <div class="flex justify-content-center flex-wrap">
-                    <div class="flex align-items-center justify-content-center">
-                        <i class="pi pi-map-marker text-white text-center" style="font-size: 3rem"></i>
-                    </div>
-                    <div class="flex align-items-center justify-content-center">
-                        <p class="text-center text-2xl p-3">{{ selectedEvent.eventLocation }}</p>
-                    </div>
+            <div
+                class="col-12 md:col-4 mt-4 lg:col-4 border-round-xl font-bold d-flex flex-column align-items-center justify-content-center">
+                <div class="text-center">
+                    <i class="pi pi-map-marker text-white mb-2" style="font-size: 3rem; display: block;"></i>
+                    <a :href="'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(selectedEvent.eventLocation)"
+                        target="_blank" class="text-2xl clickable-link">
+                        {{ selectedEvent.eventLocation }}
+                    </a>
                 </div>
             </div>
         </div>
-
 
         <!-- <div class="mt-4 text-center text-2xl font-bold">Ticket Categories</div> -->
         <div class="grid mt-4 px-2">
@@ -144,5 +131,16 @@ function getTime(input) {
 .p-fieldset .p-fieldset-content {
     padding-top: 2rem;
     padding-bottom: 2rem;
+}
+
+.clickable-link {
+    color: #00aced; // Light blue color for a clickable look
+    text-decoration: none; // Remove underline by default
+    transition: color 0.3s ease;
+}
+
+.clickable-link:hover {
+    color: #1da1f2; // Slightly darker blue on hover
+    text-decoration: underline; // Underline on hover
 }
 </style>
