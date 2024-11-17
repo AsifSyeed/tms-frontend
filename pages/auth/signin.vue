@@ -91,7 +91,7 @@ const onSubmit = async () => {
   loading.value = true;
 
   try {
-    const { data, error } = await useFetch('http://localhost:8080/api/v1/auth/token', {
+    const { data, error } = await useFetch('https://api.countersbd.com/api/v1/auth/token', {
       method: "POST",
       body: {
         email: email.value,
