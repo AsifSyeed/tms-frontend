@@ -91,7 +91,8 @@ const onSubmit = async () => {
   loading.value = true;
 
   try {
-    const { data, error } = await useFetch('https://api.countersbd.com/api/v1/auth/token', {
+    // Fetch the API response
+    const response = await useFetch('https://api.countersbd.com/api/v1/auth/token', {
       method: "POST",
       body: {
         email: email.value,
@@ -100,17 +101,23 @@ const onSubmit = async () => {
       }
     });
 
+    const data = response.data.value;
+    const error = response.error.value;
+
     // Handle API error response
     if (error) {
-      // Display API error message in toast notification
-      toast.add({ severity: 'error', summary: 'Error!', detail: error.data.message, life: 3000 });
-      loading.value = false; // Hide the loader on error
-
+      toast.add({
+        severity: 'error',
+        summary: 'Error!',
+        detail: error.data?.message || "An error occurred while processing your request.",
+        life: 3000
+      });
       loading.value = false;
+      return;
     }
 
     // Handle successful response
-    if (data.responseCode === 200) {
+    if (data && data.responseCode === 200) {
       if (rememberMe.value) {
         const userEmail = useCookie('userEmail');
         userEmail.value = email.value;
@@ -124,8 +131,13 @@ const onSubmit = async () => {
 
       navigateTo("/");
     } else {
-      toast.add({ severity: 'error', summary: 'Error!', detail: data.message, life: 3000 });
-      loading.value = false; // Hide the loader on failure
+      // Show error message if responseCode is not 200
+      toast.add({
+        severity: 'error',
+        summary: 'Error!',
+        detail: data?.message || "Unexpected response from server.",
+        life: 3000
+      });
     }
   } catch (error) {
     // Handle unexpected errors
@@ -139,6 +151,7 @@ const onSubmit = async () => {
     loading.value = false;
   }
 };
+
 </script>
 
 <style lang="scss" scoped>
