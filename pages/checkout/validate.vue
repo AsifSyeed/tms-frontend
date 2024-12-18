@@ -43,7 +43,7 @@ const payload = {
     console.log(tran_id)
     console.log(payload)
     
-        const { data, pending, error, refresh } = await $fetch('https://api.countersbd.com/api/v1/transaction/check-status', {
+        const { data, pending, error, refresh } = await $fetch('https://api.countersbd.com//api/v1/transaction/check-status', {
         onRequest({ request, options }) {
             options.headers = {
                 "Authorization": token

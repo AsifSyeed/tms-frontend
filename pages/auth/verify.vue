@@ -144,7 +144,7 @@ const onSubmit = async () => {
         }
 
         try {
-            const { data, error } = await useFetch(`https://api.countersbd.com/${url}`, {
+            const { data, error } = await useFetch(`https://api.countersbd.com//${url}`, {
                 method: "POST",
                 body,
             });
@@ -166,7 +166,7 @@ const onSubmit = async () => {
 };
 
 const onResend = async () => {
-    useFetch('https://api.countersbd.com/api/v1/user/generic-otp?emailId=' + email + '&featureCode=' + code, {
+    useFetch('https://api.countersbd.com//api/v1/user/generic-otp?emailId=' + email + '&featureCode=' + code, {
         method: "POST",
         body: {}
     }).then(res => {

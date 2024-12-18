@@ -1,6 +1,6 @@
 <script setup>
 const { id } = useRoute().params;
-const { data: events } = await useFetch('https://api.countersbd.com/api/v1/event/all');
+const { data: events } = await useFetch('https://api.countersbd.com//api/v1/event/all');
 let selectedEvent = ref();
 
 if (id !== null) {
@@ -67,30 +67,37 @@ function getTime(input) {
             </div>
         </div>
 
-        <!-- <div class="mt-4 text-center text-2xl font-bold">Ticket Categories</div> -->
         <div class="grid mt-4 px-2">
-            <div v-for="category in selectedEvent.categoryList" :key="category.categoryId" class="lg:col-4 col-12 p-2">
-                <Card style="overflow: hidden" class="bg-gray-800 w-full">
-                    <template #title>
-                        <div class="text-white text-center">
-                            {{ category.categoryName }}
-                        </div>
-                    </template>
-                    <template #footer>
-                        <div @click="navigateTo('/checkout/' + selectedEvent.eventId + '/' + category.categoryId)"
-                            class="priceButton cursor-pointer p-2 border-round-xl text-center font-bold text-3xl">
-                            ৳{{ category.discountedPrice }}
-                        </div>
+        <div v-for="category in selectedEvent.categoryList" :key="category.categoryId" class="lg:col-4 col-12 p-2">
+            <Card style="overflow: hidden" class="bg-gray-800 w-full">
+                <template #title>
+                    <div class="text-white text-center">
+                        {{ category.categoryName }}
+                    </div>
+                    <!-- Display the category description above the price -->
+                    <div class="text-gray-400 text-center mt-2">
+                        {{ category.categoryDescription }}
+                    </div>
+                </template>
+                <template #footer>
 
-                        <!-- Conditionally render the "Discounted Price!" text if discountedPrice is not equal to categoryPrice -->
-                        <div v-if="category.discountedPrice !== category.categoryPrice"
-                            class="text-green-500 text-center mt-2">
-                            {{ category.categoryDescription }}
-                        </div>
-                    </template>
-                </Card>
-            </div>
+                        <!-- Display "Free" if price or discounted price is 0 -->
+                    <div @click="navigateTo('/checkout/' + selectedEvent.eventId + '/' + category.categoryId)"
+                        class="priceButton cursor-pointer p-2 border-round-xl text-center font-bold text-3xl">
+                        <span v-if="category.discountedPrice === 0 || category.categoryPrice === 0">Free</span>
+                        <span v-else>৳{{ category.discountedPrice }}</span>
+                    </div>
+
+                    <!-- Conditionally render the "Discounted Price!" text if discountedPrice is not equal to categoryPrice -->
+                    <div v-if="category.discountedPrice !== category.categoryPrice"
+                        class="text-green-500 text-center mt-2">
+                        Discounted Price!
+                    </div>
+                </template>
+            </Card>
         </div>
+</div>
+
 
     </div>
 </template>

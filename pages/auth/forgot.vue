@@ -62,7 +62,7 @@ const onSubmit = async () => {
   // Make the API request
   try {
     const { data, error } = await useFetch(
-      `https://api.countersbd.com/api/v1/user/generic-otp?emailId=${email.value}&featureCode=3`,
+      `https://api.countersbd.com//api/v1/user/generic-otp?emailId=${email.value}&featureCode=3`,
       {
         method: "POST",
         body: {},

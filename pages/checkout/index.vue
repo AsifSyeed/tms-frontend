@@ -93,7 +93,7 @@ definePageMeta({
     //   middleware: ["authMiddleware"]
     middleware: 'auth'
 })
-const { data: events } = await useFetch('https://api.countersbd.com/api/v1/event/all')
+const { data: events } = await useFetch('https://api.countersbd.com//api/v1/event/all')
 const selectedEvent = ref();
 const selectedCategory = ref();
 const agreedToTerms = ref(false);
@@ -160,7 +160,7 @@ const purchaseTicket = async () => {
     }
     const userToken = useCookie('userToken')
     const token = "Bearer " + userToken.value
-    const { data, pending, error, refresh } = await useFetch('https://api.countersbd.com/api/v1/ticket/buy', {
+    const { data, pending, error, refresh } = await useFetch('https://api.countersbd.com//api/v1/ticket/buy', {
         onRequest({ request, options }) {
             options.headers = {
                 "Authorization": token

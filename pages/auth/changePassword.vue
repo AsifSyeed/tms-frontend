@@ -44,7 +44,7 @@ const toast = useToast()
 const userToken = useCookie('userToken')
 const token = "Bearer " + userToken.value
 
-useFetch('https://api.countersbd.com/api/v1/user/me', {
+useFetch('https://api.countersbd.com//api/v1/user/me', {
   method: 'get',
   headers: {
     "Authorization": token
@@ -94,7 +94,7 @@ const canProceed = (): boolean => {
 };
 
 const onSendOTP = async () => {
-  useFetch('https://api.countersbd.com/api/v1/user/generic-otp?emailId=' + email.value + '&featureCode=' + code, {
+  useFetch('https://api.countersbd.com//api/v1/user/generic-otp?emailId=' + email.value + '&featureCode=' + code, {
     headers: {
       "Authorization": token
     },
@@ -129,7 +129,7 @@ const onSubmit = async () => {
         sessionId: session.value
       }
     }
-    useFetch('https://api.countersbd.com/' + url, {
+    useFetch('https://api.countersbd.com//' + url, {
       headers: {
         "Authorization": token
       },
