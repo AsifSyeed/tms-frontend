@@ -99,9 +99,9 @@ definePageMeta({
 const userToken = useCookie('userToken')
 const token = "Bearer " + userToken.value
 
-const { data: events } = await useFetch('https://api.countersbd.com//api/v1/event/all')
+const { data: events } = await useFetch('https://api.countersbd.com/api/v1/event/all')
 
-const { userData, userPending, userError, userRefresh } = await $fetch('https://api.countersbd.com//api/v1/user/me', {
+const { userData, userPending, userError, userRefresh } = await $fetch('https://api.countersbd.com/api/v1/user/me', {
     onRequest({ request, options }) {
         options.headers = {
             "Authorization": token
@@ -212,7 +212,7 @@ const purchaseTicket = async () => {
 
 
 
-    const { data, pending, error, refresh } = await useFetch('https://api.countersbd.com//api/v1/ticket/buy', {
+    const { data, pending, error, refresh } = await useFetch('https://api.countersbd.com/api/v1/ticket/buy', {
         onRequest({ request, options }) {
             options.headers = {
                 "Authorization": token
@@ -232,7 +232,7 @@ const purchaseTicket = async () => {
             // Handle the response errors
         }
     })
-    // const { data: responseData } = await useFetch('https://api.countersbd.com//api/v1/ticket/buy', {
+    // const { data: responseData } = await useFetch('https://api.countersbd.com/api/v1/ticket/buy', {
     //     headers: {
     //         "Authorization": token
     //     },

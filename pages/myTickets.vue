@@ -105,7 +105,7 @@ function getTime(input: any) {
     return date.toLocaleTimeString("en-US", { hour: '2-digit', minute: '2-digit' });
 }
 
-useFetch('https://api.countersbd.com//api/v1/ticket/my-tickets', {
+useFetch('https://api.countersbd.com/api/v1/ticket/my-tickets', {
     headers: {
         "Authorization": token
     },
@@ -134,7 +134,7 @@ useFetch('https://api.countersbd.com//api/v1/ticket/my-tickets', {
 
 function downloadTicket(ticketId: any) {
     loadingTickets.value.push(ticketId) // Start loading for this ticket
-    useFetch(`https://api.countersbd.com//api/v1/ticket/download-pdf?ticketId=${ticketId}`, {
+    useFetch(`https://api.countersbd.com/api/v1/ticket/download-pdf?ticketId=${ticketId}`, {
         headers: {
             "Authorization": token,
         },

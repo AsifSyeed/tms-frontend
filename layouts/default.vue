@@ -104,7 +104,7 @@ const termsConditions = () => {
 const userToken = useCookie('userToken')
 const token = "Bearer " + userToken.value
 
-const { data: responseData } = await useFetch('https://api.countersbd.com//api/v1/user/me', {
+const { data: responseData } = await useFetch('https://api.countersbd.com/api/v1/user/me', {
     method: 'get',
     headers: {
         "Authorization": token

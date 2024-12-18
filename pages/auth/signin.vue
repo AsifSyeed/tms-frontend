@@ -92,7 +92,7 @@ const onSubmit = async () => {
 
   try {
     // Fetch the API response
-    const response = await useFetch('https://api.countersbd.com//api/v1/auth/token', {
+    const response = await useFetch('https://api.countersbd.com/api/v1/auth/token', {
       method: "POST",
       body: {
         email: email.value,

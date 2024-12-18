@@ -149,7 +149,7 @@ const clearCouponMessage = () => {
 // Fetch referral coupons from the API
 const fetchReferral = async () => {
     try {
-        const { data, error } = await useFetch(`https://api.countersbd.com//api/v1/referral/all?eventId=${selectedEvent.value.eventId}`, {
+        const { data, error } = await useFetch(`https://api.countersbd.com/api/v1/referral/all?eventId=${selectedEvent.value.eventId}`, {
             headers: {
                 "Authorization": token
             },
@@ -248,7 +248,7 @@ const attendeeList = ref([
     }
 ])
 
-const { data: events } = await useFetch('https://api.countersbd.com//api/v1/event/all')
+const { data: events } = await useFetch('https://api.countersbd.com/api/v1/event/all')
 
 function bounceUser() {
     userToken.value = null
@@ -281,7 +281,7 @@ const canProceed = (): boolean => {
     return state
 };
 
-useFetch('https://api.countersbd.com//api/v1/user/me', {
+useFetch('https://api.countersbd.com/api/v1/user/me', {
     method: 'get',
     headers: {
         "Authorization": token
@@ -354,7 +354,7 @@ const purchaseTicket = async () => {
     console.log(token)
     console.log(eventData)
 
-    useFetch('https://api.countersbd.com//api/v1/ticket/buy', {
+    useFetch('https://api.countersbd.com/api/v1/ticket/buy', {
         headers: {
             "Authorization": token
         },

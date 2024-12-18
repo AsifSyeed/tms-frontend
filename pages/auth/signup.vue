@@ -107,7 +107,7 @@ const onSubmit = async () => {
   loading.value = true;
 
   try {
-    const { data, error } = await useFetch('https://api.countersbd.com//api/v1/user/signup', {
+    const { data, error } = await useFetch('https://api.countersbd.com/api/v1/user/signup', {
       method: "POST",
       body: {
         firstName: firstName.value,
