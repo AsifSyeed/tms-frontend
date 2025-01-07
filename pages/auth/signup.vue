@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-column flex-wrap justify-content-center align-content-center align-items-center"
-       style="height: 100%; min-height: 98vh">
-    <Toast/>
+    style="height: 100%; min-height: 98vh">
+    <Toast />
     <img src="~/assets/Logo_big.png" alt="" class="max-w-18rem mb-5">
     <div class="card flex flex-column p-7 bg-white border-round shadow-2 lg-w-30 sm-w-90" style="height: 30%;">
       <!-- Input Fields -->

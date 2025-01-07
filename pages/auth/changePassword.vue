@@ -181,7 +181,7 @@ a:active {
 }
 
 .text-custom-red {
-    color: #ac1a1f;
+  color: #ac1a1f;
 }
 
 /* Selected link   */

@@ -1,17 +1,12 @@
 <template>
   <div class="flex flex-column flex-wrap justify-content-center align-content-center align-items-center"
-       style="height: 100%; min-height: 98vh">
+    style="height: 100%; min-height: 98vh">
     <Toast />
     <img src="~/assets/Logo_big.png" alt="" class="max-w-18rem mb-5">
     <div class="card flex flex-column p-7 bg-white border-round shadow-2 lg-w-30 sm-w-90" style="height: 30%;">
       <div class="text-center mb-3 font-bold text-xl">Forgot Password</div>
-      <GlobalInputText
-        type="text"
-        v-model="email"
-        placeholder="Email"
-        class="w-full mb-2 border-round"
-        @input="clearEmailError"
-      />
+      <GlobalInputText type="text" v-model="email" placeholder="Email" class="w-full mb-2 border-round"
+        @input="clearEmailError" />
       <p v-if="emailError" class="error-message">{{ emailError }}</p>
       <GlobalButton @buttonTapped="handleButtonTap" title="Submit" :disabled="false" />
       <div class="w-full text-center pt-4">

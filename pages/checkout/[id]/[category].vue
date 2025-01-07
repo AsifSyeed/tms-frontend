@@ -399,35 +399,48 @@ const purchaseTicket = async () => {
 }
 
 .price-breakdown-box {
-    width: 100%;                 /* Full screen width */
-    border: 2px solid #cccccc;    /* Light gray border */
-    padding: 20px;                /* Padding inside the box */
-    border-radius: 8px;           /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    background-color: #1f1f1f;    /* Darker background for contrast */
-    margin-top: 20px;             /* Add some margin at the top */
-    box-sizing: border-box;       /* Ensures padding is included in the width calculation */
+    width: 100%;
+    /* Full screen width */
+    border: 2px solid #cccccc;
+    /* Light gray border */
+    padding: 20px;
+    /* Padding inside the box */
+    border-radius: 8px;
+    /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    background-color: #1f1f1f;
+    /* Darker background for contrast */
+    margin-top: 20px;
+    /* Add some margin at the top */
+    box-sizing: border-box;
+    /* Ensures padding is included in the width calculation */
 }
 
 .text-xl {
-    font-size: 1.25rem;           /* Smaller font size for Total and Discount */
+    font-size: 1.25rem;
+    /* Smaller font size for Total and Discount */
 }
 
 .text-2xl {
-    font-size: 1.5rem;            /* Discounted Total remains a bit larger */
+    font-size: 1.5rem;
+    /* Discounted Total remains a bit larger */
 }
 
 .h-2rem {
-    height: 2rem;                 /* Smaller height for the elements */
+    height: 2rem;
+    /* Smaller height for the elements */
 }
 
 .mt-2 {
-    margin-top: 0.5rem;           /* Reduce the margin between the sections */
+    margin-top: 0.5rem;
+    /* Reduce the margin between the sections */
 }
 
 .w-full.flex.justify-content-between {
     display: flex;
-    justify-content: space-between; /* Titles on the left, prices on the right */
+    justify-content: space-between;
+    /* Titles on the left, prices on the right */
     align-items: center;
 }
 </style>
