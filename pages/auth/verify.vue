@@ -18,8 +18,10 @@
                 class="w-full mb-2 border-round" />
             <GlobalInputText type="password" v-if="code === '4' || code === '3'" v-model="newPassword"
                 placeholder="New Password" class="w-full mb-2 border-round" />
+            <p v-if="newPasswordError" class="error-message">{{ newPasswordError }}</p>
             <GlobalInputText type="password" v-if="code === '4' || code === '3'" v-model="retypePassword"
                 placeholder="Retype Password" class="w-full mb-2 border-round" />
+            <p v-if="passwordMismatchError" class="error-message">{{ passwordMismatchError }}</p>
             <br>
 
             <div v-if="loading" class="loader-container">
@@ -101,6 +103,13 @@ const canProceed = (): boolean => {
     return true;
 };
 
+const emailError = ref(null);
+const newPasswordError = ref(null);
+const passwordMismatchError = ref(null);
+
+const validateEmail = (email: string) => /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/.test(email);
+const validatePassword = (password: string) => password.length >= 8;
+
 const onSubmit = async () => {
     if (canProceed()) {
         loading.value = true;
@@ -119,6 +128,19 @@ const onSubmit = async () => {
                 },
             };
         } else if (code === '3') {
+            if (!newPassword.value || !validatePassword(newPassword.value)) {
+                newPasswordError.value = "Password must be at least 8 characters long";
+            }
+
+            if (newPassword.value !== retypePassword.value) {
+                passwordMismatchError.value = "Passwords do not match";
+            }
+
+            if (newPasswordError.value || passwordMismatchError.value) {
+                loading.value = false;
+                return;
+            }
+
             url = 'api/v1/user/forget-password/verify';
             body = {
                 email: email,
