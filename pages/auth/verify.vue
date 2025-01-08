@@ -11,7 +11,7 @@
             <!-- OTP Input Boxes -->
             <div class="otp-container">
                 <input v-for="(digit, index) in otpDigits" :key="index" type="text" class="otp-input" maxlength="1"
-                    v-model="otpDigits[index]" @input="handleOtpInput(index)"
+                    inputmode="numeric" pattern="[0-9]*" v-model="otpDigits[index]" @input="handleOtpInput(index)"
                     @keydown.backspace="handleBackspace(index)" :id="'otp-input-' + index" />
             </div>
             <GlobalInputText type="password" v-if="code === '4'" v-model="oldPassword" placeholder="Old Password"
