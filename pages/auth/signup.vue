@@ -107,7 +107,7 @@ const onSubmit = async () => {
   loading.value = true;
 
   try {
-    const { data, error } = await useFetch('https://api.countersbd.com/api/v1/user/signup', {
+    const response = await useFetch('https://api.countersbd.com/api/v1/user/signup', {
       method: "POST",
       body: {
         firstName: firstName.value,
@@ -119,6 +119,9 @@ const onSubmit = async () => {
         userRole: 1
       }
     });
+
+    const data = response.data.value;
+    const error = response.error.value;
 
     // Handle API error response using toast notification
     if (error) {
@@ -133,9 +136,9 @@ const onSubmit = async () => {
     }
 
     // Handle successful response
-    if (data.responseCode === 200) {
+    if (data && data.responseCode === 200) {
       const userToken = useCookie('userToken');
-      userToken.value = data.data.token;
+      userToken.value = data.token;
 
       const isAuthenticated = isAuthenticatedState();
       isAuthenticated.value = true;
@@ -146,7 +149,7 @@ const onSubmit = async () => {
       toast.add({
         severity: 'error',
         summary: 'Error!',
-        detail: data.message || "An unexpected error occurred.",
+        detail: data?.message || "An unexpected error occurred.",
         life: 3000
       });
     }
